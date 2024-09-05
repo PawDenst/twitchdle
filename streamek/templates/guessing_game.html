@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guessing Game</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/styles_guessing.css">
+
+    <link rel="icon" href="../static/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="32x32" href="../static/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../static/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../static/apple-touch-icon.png">
+    <link rel="manifest" href="../static/site.webmanifest">
+
+</head>
+<body>
+<a href="/">
+<div class="logo">
+    <img src="static/logo.png">
+ </div>
+</a>
+    <div class="background-container">
+        <h2 class="text-center">Guess the quote:</h2>
+        <div class="unknown-words">
+            <form action="/guessing-game" method="post" accept-charset="UTF-8">
+                <div class="text-center">
+                    {% for word in guessed_words %}
+                        {% if word != '[ ]' %}
+                            <span class="word-box filled">{{ word }}</span>
+                        {% else %}
+                            <span class="word-box unknown">&nbsp;</span>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                {% if not all_words_guessed %}
+                <div class="guess-input-container">
+                    <input type="text" class="form-control guess-input" name="guess" placeholder="Guess one or more words separated by spaces" {% if all_words_guessed %}disabled{% endif %}>
+                    <button type="submit" class="btn btn-info submit-btn" {% if all_words_guessed %}disabled{% endif %}>
+                        <img src="static/right-circular-64.png">
+                    </button>
+                </div>
+                {% endif %}
+                <div class="hint-container text-center">
+                    <button type="submit" name="hint" class="btn btn-info submit-btn" {% if bad_guesses_count < 3 %}disabled{% endif %} {% if all_words_guessed %}disabled{% endif %}>
+                        <img src="static/bulb_12262068.png" class="submit-img" style="max-width: 50px; max-height: 50px; margin-top:5px; margin-left:-5px">
+                    </button>
+                    <span class="tooltip-text">You can use a hint after 3 wrong guesses</span>
+                </div>
+                <p class="game-info">Hints Used: {{ hints_used_count }}</p>
+                {% for index in range(guessed_words|length) %}
+                    <input type="hidden" name="guessed_words[]" value="{{ guessed_words[index] }}">
+                    <input type="hidden" name="words[]" value="{{ words[index] }}">
+                {% endfor %}
+                <input type="hidden" name="bad_guesses_count" value="{{ bad_guesses_count }}">
+                <input type="hidden" name="next_word_index" value="{{ next_word_index }}">
+                <input type="hidden" name="hints_used_count" value="{{ hints_used_count }}">
+                <div class="text-center game-bad-info">
+                    <img src="static/bad.png" style="max-width: 50px; max-height: 50px; margin-top:-8px; margin-bottom:-40px">
+                    <p class="game-bad-info">Bad Guesses: {{ bad_guesses_count }}</p>
+                </div>
+                <div class="skip-stage-container text-center" {% if all_words_guessed %}style="display:none;"{% endif %}>
+                    <button type="submit" name="skip_stage" class="btn btn-warning submit-btn skip-btn">
+                        Skip to Name Guessing
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        {% if all_words_guessed %}
+        {% if not streamer_guessed %}
+        <!-- Congratulations Section -->
+        <div class="congratulations-section text-center">
+            <div class="congratulations-content">
+                <p>Who said that?</p>
+                <form action="/guessing-game" method="post">
+                    {% for index in range(guessed_words|length) %}
+                        <input type="hidden" name="guessed_words[]" value="{{ guessed_words[index] }}">
+                        <input type="hidden" name="words[]" value="{{ words[index] }}">
+                    {% endfor %}
+                    <input type="hidden" name="bad_guesses_count" value="{{ bad_guesses_count }}">
+                    <input type="hidden" name="next_word_index" value="{{ next_word_index }}">
+                    <input type="hidden" name="hints_used_count" value="{{ hints_used_count }}">
+                    <input type="hidden" name="finish_game" value="true">
+                    <div class="text-center">
+                        <input type="text" class="form-control predefined-input" name="predefined_name" placeholder="Enter Predefined Name" {% if streamer_guessed %}disabled{% endif %}>
+                        <button type="submit" class="btn btn-info submit-btn" {% if streamer_guessed %}disabled{% endif %}>
+                            <img src="static/right-circular-64.png">
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        {% endif %}
+        {% if streamer_guessed %}
+        <div class="congratulations">
+            <div class="congratulations-content text-center">
+                <h2 class="congratulations-title">Congratulations!</h2>
+                <p class="congratulations-message">You've guessed all the words correctly and entered the predefined name.</p>
+                <img src="static/mammon.jpg" class="celebration-img" alt="Celebration">
+            </div>
+            <div class="confetti"></div>
+        </div>
+        {% endif %}
+        {% endif %}
+    </div>
+       <div class="incorrect-guesses-box">
+    <div class="incorrect-guesses-container text-center">
+        <p class="incorrect-guesses-title">Incorrectly guessed words:</p>
+        <p class="incorrect-guesses">{{ incorrect_guesses | join(', ') }}</p>
+    </div>
+</div>
+    <script src="../static/script_guessing.js"></script>
+</body>
+</html>

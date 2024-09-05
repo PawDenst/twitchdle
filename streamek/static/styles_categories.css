@@ -1,0 +1,760 @@
+body {
+    background-image: url('collage.png');
+    background-size: auto;
+    background-position: center;
+    font-family: 'Source Sans Pro', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 200;
+    font-size: 14.5px;
+    src: url(https://fonts.gstatic.com/s/sourcesanspro/v22/6xKydSBYKcSV-LCoeQqfX1RYOo3i94_wmhduz8A.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+    background-color: #f7f7f7;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    flex: 1;
+    padding-bottom: 100px; /* Ensure there's enough space to push the footer down */
+}
+
+.guessed-streamer-info p {
+    font-size: 13px;
+}
+
+@media (max-width: 768px) {
+    .guessed-streamer-info p {
+        font-size: 5.5px;
+    }
+}
+
+
+@media (max-width: 768px) {
+    body {
+    font-size: 0.6em;
+}
+}
+
+
+.logo {
+   text-align: center;
+   align-items: center;
+   height: auto /* Decrease height */
+   width: auto; /* Decrease width */
+}
+
+.background-container {
+    background-color: #1e2328; /* Dark background */
+    padding: 10px; /* Decrease padding */
+    border-radius: 10px; /* Decrease border radius */
+    margin: auto; /* Center vertically and horizontally */
+    margin-top: 10px; /* Decrease margin */
+    max-width: 1240px; /* Decrease container width */
+    color: #fff; /* White text color for better contrast */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    box-shadow: 0 0 0 1.75px #470099;
+    position: relative;
+    height: auto;
+}
+
+h1 {
+    margin-top: 20px; /* Decrease margin */
+    text-align: center;
+}
+
+h3 {
+    color: #fff; /* White text color for better contrast */
+    margin-top: 5px; /* Decrease margin */
+    text-align: center;
+}
+
+/* Form Styles */
+form {
+    margin-top: 10px; /* Decrease margin */
+}
+
+label {
+    display: block;
+    margin-bottom: 5px; /* Decrease margin */
+    font-size: 14px; /* Decrease font size */
+}
+
+.input-container {
+    display: flex;
+    justify-content: center; /* Center the container horizontally */
+    margin: 0 auto; /* Center the container horizontally */
+}
+
+.input-container form {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Center elements horizontally */
+}
+
+.form-inputs {
+    display: flex;
+    align-items: center; /* Align children vertically */
+    margin-top: 10px; /* Add space between reCAPTCHA and input/button */
+}
+
+.input-container input[type="text"] {
+    padding: 10px; /* Decrease padding */
+    height: 60px;
+    width: 240px; /* Decrease width */
+    font-size: 14px; /* Decrease font size */
+    border: 2px solid #470099;
+    border-radius: 20px; /* Decrease border radius */
+    background-color: #181c20; /* Light background color */
+    transition: border-color 0.3s ease;
+    color: #FFFFFF; /* Text color */
+    outline: none;
+    margin-right: 10px; /* Adds space between the input and the button */
+    margin-bottom: 28px;
+}
+
+/* Style for the button content */
+.button-content {
+    position: relative;
+    display: flex;
+    justify-content: center; /* Center contents horizontally */
+    align-items: center; /* Center contents vertically */
+    height: 70px; /* Decrease height */
+}
+
+/* Style for the button image */
+.button-img {
+    width: 280px; /* Decrease width */
+    height: 70px; /* Decrease height */
+}
+
+/* Style for the button text */
+.button-text {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 16px; /* Adjust as needed */
+    white-space: nowrap; /* Prevent text from wrapping */
+    left: 55%; /* Center horizontally */
+    transform: translateX(-45%); /* Center horizontally */
+}
+
+.sub-text {
+    font-size: 12px; /* Smaller font size for the subtext */
+    color: #ccc; /* Lighter color for the subtext */
+    margin-top: 2px; /* Small margin to separate from the main text */
+}
+
+/* Additional styles for the play again button */
+.quote-game-btn {
+    background-color: transparent !important; /* Override default hover background color */
+    border-color: transparent !important; /* Override default hover border color */
+    border: none; /* Removes any default border */
+    outline: none; /* Remove default outline */
+    z-index: 1000; /* Ensure the button is above other elements */
+    position: relative; /* Ensures the z-index takes effect */
+    animation: zoomButton 0.6s infinite alternate; /* Animation for continuous zooming */
+    box-sizing: border-box; /* Ensures padding and border are included in width and height */
+    align-items: center; /* Ensures the button content is centered vertically */
+    justify-content: center; /* Ensures the button content is centered horizontally */
+    padding: 0; /* Removes any default padding */
+    height: 50px; /* Decrease height */
+    width: 50px; /* Decrease width */
+}
+
+@keyframes zoomButton {
+    0% {
+        transform: scale(1); /* Original size */
+    }
+    100% {
+        transform: scale(1.2); /* Zoomed out size */
+    }
+}
+
+.quote-game-btn:hover {
+    background-color: transparent !important; /* Override default hover background color */
+    border-color: transparent !important; /* Override default hover border color */
+    filter: brightness(125%);
+    animation-play-state: paused; /* Pause the animation on hover */
+}
+
+.quote-game-btn:focus {
+    outline: none !important; /* Remove default focus outline */
+}
+
+.submit-btn {
+    display: flex;
+    align-items: center; /* Ensures the button content is centered vertically */
+    justify-content: center; /* Ensures the button content is centered horizontally */
+    padding: 0; /* Removes any default padding */
+    background-color: transparent; /* Set background color to transparent */
+    border: none; /* Removes any default border */
+    outline: none; /* Remove default outline */
+    cursor: pointer; /* Adds a pointer cursor on hover */
+    height: 40px; /* Decrease height */
+    width: 40px; /* Decrease width */
+    box-sizing: border-box; /* Ensures padding and border are included in width and height */
+}
+
+.submit-btn:hover {
+    background-color: transparent !important; /* Override default hover background color */
+    border-color: transparent !important; /* Override default hover border color */
+    filter: brightness(125%);
+}
+
+.submit-btn:focus {
+    outline: none !important; /* Remove default focus outline */
+}
+
+.btn-info[disabled] {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.btn:disabled .submit-img {
+    filter: grayscale(100%);
+}
+
+.submit-img {
+    margin-bottom: 27px;
+    margin-left: 30px;
+    vertical-align: middle; /* Ensure the image is vertically centered */
+}
+
+/* Table Styles */
+table {
+    border-collapse: separate; /* Use separate borders */
+    border-spacing: 0.7em 1.5em; /* Adjust the spacing as needed */
+    width: 60%; /* Decrease width */
+    margin: auto; /* Decrease margin */
+    overflow: hidden;
+    border-radius: 10px; /* Decrease border radius */
+    table-layout: fixed; /* Ensure equal width for columns */
+}
+
+th, td {
+    height: 3em; /* Decrease height */
+    border: 1px solid #ddd;
+    padding: 0.3em; /* Decrease padding */
+    border-radius: 10px; /* Decrease border radius */
+    box-sizing: border-box;
+    border-color: #6a6f76;
+    width: 115px; /* Decrease width for each column */
+    text-align: center;
+}
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .background-container {
+        padding: 8px;
+        border-radius: 8px;
+        margin-top: 8px;
+        max-width: 95%;
+        box-shadow: none;
+    }
+
+    table {
+        width: 90%;
+        border-spacing: 0.5em 1em;
+    }
+
+    th, td {
+        height: 2.5em;
+        padding: 0.2em;
+        border-radius: 8px;
+        width: auto;
+        font-size: 0.6em;
+    }
+}
+
+th {
+    border-color: #9146ff;
+    background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.green {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.red {
+    background-color: #6f0000;
+    color: white;
+}
+
+.orange {
+    background-color: #FFA500;
+    color: white;
+}
+
+/* Animation styles */
+/* Apply animation to status cells */
+.status-row td {
+    opacity: 0;
+    transform: translateY(10px) scale(0.9);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.status-row td.reveal {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* Dark theme for table rows */
+.status-row {
+    background-color: #333; /* Dark background color */
+    color: #fff; /* Light text color */
+}
+
+/* Styles for table header */
+#status-table th {
+    background-color: #222; /* Darker background color for table headers */
+    color: #fff; /* Light text color for table headers */
+}
+
+/* Styles for alternating rows */
+#status-table tr:nth-child(even) {
+    background-color: #444; /* Darker background color for even rows */
+}
+
+.arrow-down {
+    background: url('arrow-down.png') center center no-repeat; /* Replace 'arrow.jpg' with your arrow image */
+    color: white;
+    background-color: #6f0000;
+    background-size: 9.8em; /* Allow content to appear over the background */
+    text-align: center; /* Center the text content */
+}
+
+.arrow-up {
+    background: url('arrow-up.png') center center no-repeat; /* Replace 'down-arrow.png' with your arrow image */
+    color: white;
+    background-color: #6f0000;
+    background-size: 9.8em; /* Allow content to appear over the background */
+    text-align: center; /* Center the text content */
+}
+
+/* Define fixed dimensions for images */
+.streamer-name {
+    flex: 1; /* Make the name fill remaining space */
+}
+
+.streamer-item {
+    display: flex;
+    align-items: center;
+}
+
+.streamer-image {
+    margin-top:10px;
+    margin-bottom:3px;
+    flex: 0 0 40px; /* Prevent the image from shrinking or growing */
+    width: 40px; /* Decrease width */
+    height: 40px; /* Decrease height */
+    border-radius: 50%; /* Make the image circular */
+}
+
+.streamer-image-small {
+    width: 30px; /* Adjust as needed */
+    height: 30px; /* Adjust as needed */
+
+}
+
+#streamer-list-container {
+    position: relative;
+}
+
+#streamer-list {
+    display: none;
+    position: absolute;
+    top: calc(100% + 2px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 2px);
+    max-height: 150px; /* Adjusted max-height */
+    max-width: 500px;
+    overflow-y: auto;
+    background-color: #333;
+    border: 1px solid #555;
+    border-top: none;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+@media (max-width: 768px) {
+    #streamer-list {
+        width: 100%;
+        max-height: 250px; /* Increase height if necessary */
+    }
+}
+
+#streamer-list div {
+    padding: 10px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    border-bottom: 1px solid #555;
+}
+
+#streamer-list div:last-child {
+    border-bottom: none;
+}
+
+#streamer-list div:hover {
+    background-color: #555;
+}
+
+.attempt-count {
+    color: pink;
+}
+
+.congratulations {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #721de0;
+    border: 2px solid #5e0cc2;
+    padding: 20px 0;
+    z-index: 10;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    animation: slideUp 1s ease-out;
+}
+
+.congratulations:hover {
+    filter: brightness(110%);
+}
+
+.congratulations-content {
+    position: relative;
+    padding: 20px;
+}
+
+.congratulations-title {
+    font-size: 2.5em;
+    color: #ffba61;
+    margin-bottom: 10px;
+    animation: pop 1s ease-out;
+}
+
+.congratulations-message {
+    font-size: 1.5em;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.celebration-img {
+    width: 100px;
+    height: auto;
+    animation: bounce 2s infinite;
+}
+
+.confetti {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
+
+@keyframes pop {
+    0% { transform: scale(0); }
+    100% { transform: scale(1); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.confetti-piece {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #FFD700;
+    animation: fall 3s infinite;
+}
+
+@keyframes fall {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(100vh); }
+}
+
+.game-summary-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+.game-summary {
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #721de0 0%, #1499ef 100%);
+}
+
+.game-summary h3 {
+    margin-bottom: 10px;
+    font-size: 1.5em;
+    color: #ffffff;
+}
+
+.game-summary p {
+    font-size: 1.5em;
+    line-height: 1.5;
+    margin: 5px 0;
+    white-space: pre; /* Ensure white space is preserved for proper formatting of the summary */
+}
+.game-summary:hover {
+    filter: brightness(110%);
+}
+
+.streamer-image-tooltip {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 12px;
+    white-space: nowrap;
+    display: none;
+    z-index: 1000;
+}
+
+.counter-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+    font-size: 20px;
+    font-family: Arial, sans-serif;
+    color: white;
+}
+
+.counter-container .counter-number {
+    color: pink; /* Initial color */
+    font-weight: bold;
+    transition: color 0.5s ease;
+    margin-left: 5px;
+    margin-right: 5px;/* Adjust the margin as needed */
+}
+
+.color-indicator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 2px solid #470099;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 2em;
+    width: 40%; /* Adjust height to make the box shorter */
+    transform: translate(75%, 0%);
+}
+        .color-indicator h3 {
+            margin-bottom: 5px;
+            font-size: 24px;
+        }
+        .color-indicator ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .color-indicator li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 3px;
+            font-size: 15px;
+        }
+        .color-box {
+            width: 15px;
+            height: 15px;
+            display: inline-block;
+            margin-right: 5px;
+        }
+        .color-box.green {
+            background-color: green;
+        }
+        .color-box.orange {
+            background-color: orange;
+        }
+        .color-box.red {
+            background-color: red;
+        }
+      .stats-note {
+    color: white; /* Light gray text color for subtle appearance */
+    font-size: 15px; /* Smaller font size */
+    background-color: #673ab7; /* Dark gray background to blend with the theme */
+    padding: 8px; /* Less padding */
+    border-radius: 5px; /* Smaller border radius */
+    opacity: 0.8; /* Slight transparency */
+    position: absolute; /* Position it absolutely */
+    top: 10px; /* Position it 10px from the top */
+    right: 10px; /* Position it 10px from the right */
+    text-align: right; /* Right-align the text */
+}
+
+.category-ranges {
+    width: 100%;
+    margin: 10px auto;
+    overflow-x: auto;
+}
+
+.category-ranges table {
+    border-collapse: separate;
+    border-spacing: 9px 24px;
+    width: 60%;
+    margin: 10px auto;
+    overflow: hidden;
+    border-radius: 10px;
+    table-layout: fixed;
+}
+
+.category-ranges th, .category-ranges td {
+    height: 5em;
+    border: 1px solid #ddd;
+    padding: 8px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    border-color: #6a6f76;
+    width: 9em;
+    text-align: center;
+    vertical-align: middle; /* Center align text vertically */
+}
+
+.category-ranges th {
+    border-color: #9146ff;
+    background-color: #222;
+    color: white;
+    font-weight: bold;
+    text-align: center; /* Center text horizontally */
+    vertical-align: middle; /* Center text vertically */
+    height: 2em;
+    padding: 0.3em;
+}
+
+.category-ranges td {
+    background-color: #222;
+    color: #fff;
+}
+
+.category-ranges tr:nth-child(even) {
+    background-color: #2a2a2a;
+}
+
+.category-ranges tr:nth-child(odd) {
+    background-color: #222;
+}
+
+.category-ranges .green {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.category-ranges .red {
+    background-color: #6f0000;
+    color: white;
+}
+
+.category-ranges .yellow {
+    background: url('arrow-up.png') center center no-repeat;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: white;
+    background-color: #6f0000;
+    background-size: 7.7em;
+    text-align: center;
+    vertical-align: middle; /* Center align text vertically */
+}
+
+.category-ranges .blue {
+    background: url('arrow-down.png') center center no-repeat;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: white;
+    background-color: #6f0000;
+    background-size: 7.7em;
+    text-align: center;
+    vertical-align: middle; /* Center align text vertically */
+}
+
+@media (max-width: 768px) {
+    .category-ranges table {
+        width: 100%;
+
+    }
+
+    .category-ranges th, .category-ranges td {
+        height: 3em;
+        padding 2em;
+        font-size: 0.9em;
+        width: auto;
+    }
+
+.streamer-image {
+    margin-top:10px;
+    margin-bottom:3px;
+    width: 14px; /* Decrease width */
+    height: 14px; /* Decrease height */
+    border-radius: 50%; /* Make the image circular */
+}
+}
+
+footer {
+    text-align: center;
+    padding: 15px;
+    background-color: #333;
+    color: white;
+    font-size: 17px;
+}
+
+footer p {
+    font-size: 1.2em;
+    margin: -3px 0;
+}
+
+footer a {
+    color: #1DA1F2; /* Twitter color */
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+footer a.github {
+    color: #4078c0; /* GitHub color */
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+
+.countdown-container {
+    color: white;
+    text-align: center;
+    margin-top: 18px;
+    font-size: 22px;
+}
+
+#countdown {
+    font-size: 22px;
+    font-weight: bold;
+     color: pink;
+}

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitchdle</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/styles_emotes.css">
+    <link rel="icon" href="../static/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="32x32" href="../static/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../static/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../static/apple-touch-icon.png">
+    <link rel="manifest" href="../static/site.webmanifest">
+</head>
+<body onload="displayGuessedStreamers()">
+    <!-- Existing HTML code -->
+    <div class="logo">
+        <a href="/">
+            <img src="static/logo.png" alt="Twitchdle">
+        </a>
+    </div>
+    <div class="congratulations" id="congratulations" style="display: none;">
+        <div class="congratulations-content text-center">
+            <h2 class="congratulations-title">Gratulacje!</h2>
+            <p class="congratulations-message">Odgadłeś dzisiejszego streamera!</p>
+            <img src="" class="celebration-img" alt="Dzisiejszy Streamer">
+            <div class="counter-container">
+                <span id="correctGuessesCount" class="counter-number">0</span> osób już zgadło
+            </div>
+            <p class="attempt-count-container" style="margin-top: 30px;">
+                Liczba podejść: <span class="attempt-count" id="attemptCount">0</span>
+            </p>
+            <div class="countdown-container">
+                Następny streamer pojawi się za:
+                <div id="countdown" style="margin-bottom: 20px;"></div>
+            </div>
+            <a href="/quote" class="btn btn-info quote-game-btn" id="quoteButton">
+                <div class="button-content">
+                    <img src="static/cytat.png" alt="Button Image" class="button-img">
+                    <span class="button-text">
+                        Cytat
+                        <span class="sub-text">Odgadnij streamera po cytacie</span>
+                    </span>
+                </div>
+            </a>
+        </div>
+        <div class="confetti"></div>
+    </div>
+
+    <div class="background-container">
+        <h1>Jakiego streamera opisują te emotki?</h1>
+        <div id="emojis"></div>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+        <script src="../static/script_emotes.js"></script>
+
+        <div class="input-container">
+            <input type="text" id="guessInput" placeholder="Wpisz nick streamera">
+            <button id="guessButton" class="btn submit-btn" type="button" onclick="checkGuess()">
+                <img src="static/right-circular-64.png" class="submit-img" alt="Sprawdź">
+            </button>
+        </div>
+        <div id="streamer-list-container">
+            <div id="streamer-list"></div>
+        </div>
+        <div id="guessedStreamers" class="guessed-streamer-container">
+            <ul id="guessedStreamersList"></ul>
+        </div>
+    </div>
+
+
+
+    <footer>
+        <p>Stworzył pawelqq1</p>
+        <p>
+            <a href="https://twitter.com/pawelqq1" target="_blank">Twitter</a>
+        </p>
+        <a href="/privacy_policy" style="color: #ffffff; font-size: 10px; padding: 10px; text-align: center;">Polityka prywatności</a>
+    </footer>
+</body>
+<button id="restartButton" style="display: none;"></button>
+</html>

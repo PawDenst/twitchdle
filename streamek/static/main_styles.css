@@ -1,0 +1,144 @@
+body {
+background-image: url('collage.png');
+    background-size: center;
+    background-position: center;
+    font-family: 'Source Sans Pro', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 200;
+    font-size: 17px;
+    src: url(https://fonts.gstatic.com/s/sourcesanspro/v22/6xKydSBYKcSV-LCoeQqfX1RYOo3i94_wmhduz8A.woff2) format('woff2');
+    unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+    margin: 0;
+    background-color: #2c2f33;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+p.header-text {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 24px;
+    -webkit-text-stroke: 1px black;
+    padding: 10px 15px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.logo {
+   text-align: center;
+   align-items: center;
+   height: auto /* Decrease height */
+   width: auto; /* Decrease width */
+    }
+
+.container {
+    text-align: center;
+    margin-top: 125px;
+    margin-bottom: 150px;
+}
+
+h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    color: #7289da;
+}
+
+p {
+    font-size: 1.2em;
+    margin-bottom: 5em;
+}
+
+/* Style for the button content */
+.button-content {
+    color: white;
+    position: absolute;
+    display: flex;
+    justify-content: center; /* Center contents horizontally */
+    align-items: center; /* Center contents vertically */
+}
+
+/* Style for the button image */
+.button-img {
+    width: 400px; /* Adjust as needed */
+    height: auto;
+}
+
+/* Style for the button text */
+.button-text {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 18px; /* Adjust as needed */
+    white-space: nowrap; /* Prevent text from wrapping */
+    left: 55%; /* Center horizontally */
+    transform: translateX(-50%); /* Center horizontally */
+}
+
+.sub-text {
+    font-size: 14px; /* Smaller font size for the subtext */
+    color: #ccc; /* Lighter color for the subtext */
+    margin-top: 2px; /* Small margin to separate from the main text */
+}
+
+/* Additional styles for the play again button */
+.quote-game-btn {
+    transition: transform 0.3s ease-in-out; /* Add transition for smooth zoom */
+    background-color: transparent; /* Override default hover background color */
+    border-color: transparent; /* Override default hover border color */
+    border: none; /* Removes any default border */
+    outline: none; /* Remove default outline */
+    z-index: 1000; /* Ensure the button is above other elements */
+    position: relative; /* Ensures the z-index takes effect */
+    box-sizing: border-box; /* Ensures padding and border are included in width and height */
+    display: flex;
+    align-items: center; /* Ensures the button content is centered vertically */
+    justify-content: center; /* Ensures the button content is centered horizontally */
+    padding: 0; /* Removes any default padding */
+    height: auto; /* Adjust to match the input field height */
+    width: auto;
+}
+
+.quote-game-btn:hover {
+    background-color: transparent !important; /* Override default hover background color */
+    border-color: transparent !important; /* Override default hover border color */
+    filter: brightness(125%);
+    transform: scale(1.1); /* Added scale transform */
+}
+
+.quote-game-btn:focus {
+    outline: none !important; /* Remove default focus outline */
+}
+
+/* Footer styles */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: 20px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+footer a {
+    color: #1DA1F2; /* Twitter color */
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+footer a.github {
+    color: #4078c0; /* GitHub color */
+}
+
+footer a:hover {
+    text-decoration: underline;
+}

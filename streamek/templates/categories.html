@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitchdle</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/styles_categories.css">
+
+    <link rel="icon" href="../static/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="32x32" href="../static/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../static/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../static/apple-touch-icon.png">
+    <link rel="manifest" href="../static/site.webmanifest">
+
+</head>
+<body>
+<div class="logo">
+    <a href="/">
+        <img src="static/logo.png" alt="Twitchdle">
+    </a>
+</div>
+<div class="background-container">
+    <h1>Odgadnij dzisiejszego streamera!</h1>
+    {% if not success_message %}
+    <div class="category-ranges">
+    <table class="table">
+            <tr>
+                {% for category, range_tuple in min_ranges.items() %}
+                {% if category != 'Top 2 Streamowane Gry' or (category == 'Top 2 Streamowane Gry' and range_tuple[0] == range_tuple[1]) %}
+                <th>{{ category }}</th>
+                {% endif %}
+                {% endfor %}
+            </tr>
+        <tbody>
+            <tr>
+                {% for category, range_tuple in min_ranges.items() %}
+                {% if category != 'Top 2 Streamowane Gry' or (category == 'Top 2 Streamowane Gry' and range_tuple[0] == range_tuple[1]) %}
+                <td class="{% if range_tuple[2] == 'range' %}red{% elif range_tuple[2] == 'min' %}yellow{% elif range_tuple[2] == 'max' %}blue{% elif range_tuple[0] == range_tuple[1] %}green{% elif range_tuple[0] != range_tuple[1] %}red{% endif %}">
+                    {% if range_tuple[2] == 'min' %}
+                        {{ range_tuple[0] }} {{ range_tuple[1] }}
+                    {% elif range_tuple[2] == 'max' %}
+                        {{ range_tuple[0] }} {{ range_tuple[1] }}
+                    {% elif range_tuple[0] != range_tuple[1] %}
+                        {{ range_tuple[0] }} - {{ range_tuple[1] }}
+                    {% else %}
+                        {{ range_tuple[0] }}
+                    {% endif %}
+                </td>
+                {% endif %}
+                {% endfor %}
+            </tr>
+        </tbody>
+    </table>
+</div>
+    <div class="input-container">
+        <form id="categories-form" method="post" onsubmit="onSubmit(event)">
+            <div class="form-inputs">
+                <input type="text" id="streamer" name="streamer" placeholder="Wpisz nick streamera" autocomplete="off">
+                <button type="submit" class="btn btn-info submit-btn">
+                    <img src="static/right-circular-64.png" class="submit-img" alt="Sprawdź">
+                </button>
+            </div>
+        </form>
+    </div>
+
+    {% else %}
+    <div class="congratulations">
+        <div class="congratulations-content text-center">
+            <h2 class="congratulations-title">Gratulacje!</h2>
+           <p class="congratulations-message">Odgadłeś dzisiejszego streamera: <span style="color: pink;">{{ hidden_streamer_key }}</span></p>
+            <img src="{{ hidden_streamer_image }}" class="celebration-img" alt="Dzisiejszy Streamer">
+            <div class="counter-container">
+                <span id="correctGuessesCount" class="counter-number">{{ completion_count }}</span> osób juz zgadło
+            </div>
+            <p class="congratulations-message" style="margin-top:30px;">
+                Ilość podejść: <span class="attempt-count">{{ attempt_count }}</span>
+            </p>
+            <div class="countdown-container">
+                Następny streamer pojawi się za:
+                <div id="countdown" style="margin-bottom: 15px"></div>
+            </div>
+            <a href="/emotes" class="btn btn-info quote-game-btn">
+                <div class="button-content">
+                <img src="static/button8.png" alt="Button Image" class="button-img">
+                <span class="button-text">
+                    Emotki
+                    <span class="sub-text">Odkrywaj emotki przy każdej próbie</span>
+                </span>
+            </div>
+            </a>
+        </div>
+        <div class="confetti"></div>
+    </div>
+    {% if success_message %}
+    <div class="game-summary-container">
+        <div class="game-summary">
+            <h3>Podsumowanie:</h3>
+            {% for summary in guessed_summaries %}
+            <p>{{ summary }}</p>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+    {% endif %}
+    <div id="streamer-list-container">
+        <div id="streamer-list" style="display: none;"></div>
+    </div>
+    {% if guessed_streamers %}
+    <table id="status-table">
+        <tr>
+            <th>Profilowe</th>
+            <th>Płeć</th>
+            <th>Walczył we freak fightach</th>
+            <th>Top 2 Streamowane Gry</th>
+            <th>Największa liczba widzów</th>
+            <th>Średnia liczba widzów</th>
+            <th>Kiedy zaczął streamować</th>
+            <th>Liczba obserwujących</th>
+        </tr>
+        {% for guessed_streamer_info in guessed_streamers %}
+        <tr class="status-row {% if loop.index0 == 0 %}newest{% endif %}">
+            <td>
+                <img class="streamer-image" src="{{ guessed_streamer_info[1]['Image'] }}" alt="{{ guessed_streamer_info[0] }}'s Image" data-streamer-name="{{ guessed_streamer_info[0] }}">
+            <div class="guessed-streamer-info">
+                <p>{{ guessed_streamer_info[0] }}</p>
+            </div>
+            </td>
+            {% for category in ['Płeć', 'Walczył we freak fightach', 'Top 2 Streamowane Gry', 'Największa liczba widzów', 'Średnia liczba widzów', 'Kiedy zaczął streamować', 'Liczba obserwujących'] %}
+            <td class="{% if guessed_streamer_info[3] %}
+                {% if guessed_streamer_info[2][category] == 'green' %}
+                green
+                {% elif guessed_streamer_info[2][category] == 'orange' %}
+                orange
+                {% elif guessed_streamer_info[2][category] == 'red' %}
+                red
+                {% elif guessed_streamer_info[2][category] == 'greater' %}
+                arrow-down
+                {% elif guessed_streamer_info[2][category] == 'lesser' %}
+                arrow-up
+                {% endif %}
+                {% endif %}">
+                {% if guessed_streamer_info[2] %}
+                {% if guessed_streamer_info[2][category] == 'greater' %}
+                {{ guessed_streamer_info[1][category] }}
+                {% elif guessed_streamer_info[2][category] == 'lesser' %}
+                {{ guessed_streamer_info[1][category] }}
+                {% else %}
+                {{ guessed_streamer_info[1][category] }}
+                {% endif %}
+                {% else %}
+                {{ guessed_streamer_info[1][category] }}
+                {% endif %}
+            </td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+    <div class="color-indicator">
+        <h3>Wskaźnik kolorów</h3>
+        <ul>
+            <li><span class="color-box green"></span> Prawidłowe</li>
+            <li><span class="color-box orange"></span> Częściowe</li>
+            <li><span class="color-box red"></span> Nieprawidłowe</li>
+            <li>Statystki liczbowe streamerów pochodzą z poprzedniego miesiąca</li>
+        </ul>
+    </div>
+    {% endif %}
+    <script src="../static/script_categories.js"></script>
+</div>
+ <footer>
+        <p>Stworzył pawelqq1</p>
+        <p>
+            <a href="https://twitter.com/pawelqq1" target="_blank">Twitter</a>
+        </p>
+            <a href="/privacy_policy" style="color: #ffffff; font-size: 10px; padding: 10px; text-align: center;">Polityka prywatności</a>
+    </footer>
+</body>
+</html>
