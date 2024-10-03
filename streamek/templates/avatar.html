@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags for responsiveness and SEO -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess the Streamer</title>
+
+    <!-- Bootstrap for styling -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS file -->
+    <link rel="stylesheet" href="../static/styles_avatar.css">
+
+    <!-- Favicons -->
+    <link rel="icon" href="../static/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="32x32" href="../static/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../static/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../static/apple-touch-icon.png">
+    <link rel="manifest" href="../static/site.webmanifest">
+
+    <!-- Google reCAPTCHA API -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+    <!-- Google Ads script -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5128286852536730"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="logo">
+        <a href="/">
+            <img src="static/logo.png" alt="Twitchdle">
+        </a>
+    </div>
+    <div class="background-container">
+        {% if avatar_result == 'correct' %}
+   <div class="congratulations">
+        <div class="congratulations-content text-center">
+            <h2 class="congratulations-title">Gratulacje!</h2>
+            <p class="congratulations-message">Odgadłeś dzisiejszego streamera: <span style="color: pink;">{{ current_streamer }}</span></p>
+            <img class="celebration-img" src="{{ current_image_url }}" alt="{{ current_streamer }}">
+            <div class="counter-container">
+              <span id="correctGuessesCount" class="counter-number">{{ avatar_correct_guess_count }}</span> osób już zgadło
+            </div>
+            <p class="attempt-count-container">
+                Liczba podejść: <span class="attempt-count" id="attemptCount">{{ avatar_guesses_counter }}</span>
+            </p>
+            <div class="countdown-container">
+                Następny streamer pojawi się za:
+                <div id="countdown" style="margin-bottom: 20px;"></div>
+            </div>
+        </div>
+        <div class="confetti"></div>
+   </div>
+{% endif %}
+        <h1>Jakiego streamera to avatar?</h1>
+                    <!-- Image section -->
+                    <div>
+                        <img id="image" src="data:image/png;base64,{{ image_data }}" alt="Streamer Avatar" class="image-avatar">
+                    </div>
+        {% if avatar_result == 'incorrect' or avatar_result == none %}
+            <div class="input-container">
+                <form method="post">
+                        <input type="text" id="streamer" name="streamer" placeholder="Wpisz nazwę streamera" autocomplete="off">
+                        <button id="submit" class="btn btn-info submit-btn">
+                            <img src="static/right-circular-64.png" class="submit-img" alt="Sprawdź">
+                        </button>
+                </form>
+            </div>
+        {% endif %}
+        <div id="streamer-list-container">
+            <div id="streamer-list" style="display: none;"></div>
+        </div>
+        <div class="guessed-streamer-container">
+            {% for guessed in guessed_avatars %}
+                <div class="guessed-streamer-item guessed-streamer {% if loop.first %} {{ guessed.animation_class }}{% endif %}">
+                    <img src="{{ guessed.image }}" alt="{{ guessed.name }}" class="guessed-streamer-image">
+                    <div class="guessed-streamer-name">{{ guessed.name }}</div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script_avatar.js') }}"></script>
+    <footer>
+        <p>Stworzył pawelqq1</p>
+        <a href="https://tipo.live/p/twitchdle" target="_blank"><img src="static/dotacja.png" style="width: 5%; height: 5%" alt="Wesprzyj mnie"></a>
+        <p>
+            <a href="https://twitter.com/pawelqq1" target="_blank">Twitter</a>
+        </p>
+        <a href="/privacy_policy" style="color: #ffffff; font-size: 9px; padding: 8px; text-align: center;">Polityka prywatności</a>
+    </footer>
+
+    <!-- JavaScript for jQuery, Bootstrap, and confetti -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+</body>
+</html>

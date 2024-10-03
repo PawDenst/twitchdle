@@ -5,6 +5,8 @@ import datetime
 import random
 import json
 import re
+from datetime import datetime, timedelta
+from stats import update_user_stats
 
 from pydub import AudioSegment
 
@@ -126,8 +128,8 @@ def quote():
 
     if 'correct_guess_data' not in user_session:
         user_session['correct_guess_data'] = 0
-    if 'result' not in user_session:
-        user_session['result'] = 'blank'
+    if 'quote_result' not in user_session:
+        user_session['quote_result'] = None
     if 'guessed_quotes' not in user_session:
         user_session['guessed_quotes'] = []
     if 'guesses_counter' not in user_session:
@@ -168,13 +170,25 @@ def quote():
                     }
 
                     if guess == daily_quote['author'].strip().lower():
-                        user_session['result'] = 'correct'
+                        user_session['quote_result'] = 'correct'
                         animation_class = 'correct-guess skok'
                         user_session['sliced_wav'] = 100  # Show full audio
                         user_session['correct_guess_count'] = update_correct_guesses_count()
+                        won = True
+                        first_try = user_session['guesses_counter'] == 1
+                        try:
+                            update_user_stats(user_session['guesses_counter'], won, first_try, 'quotes')
+                        except Exception as e:
+                            print(f"Error updating user stats: {e}")  # Handle the error (optional logging)
                     else:
-                        user_session['result'] = 'incorrect'
+                        user_session['quote_result'] = 'incorrect'
                         animation_class = 'shake'
+                        won = False
+                        try:
+                            update_user_stats(user_session['guesses_counter'], won, False, 'quotes')
+                        except Exception as e:
+                            print(f"Error updating user stats: {e}")  # Handle the error (optional logging)
+
 
                     user_session['guessed_quotes'].insert(0, {
                         "name": streamer_guess_name,
@@ -187,7 +201,7 @@ def quote():
         return redirect(url_for('quote_app.quote'))
 
     quote_text = daily_quote['text']
-    if user_session['result'] != 'correct':
+    if user_session['quote_result'] != 'correct':
         if daily_quote['word_count'] > 16:
             if user_session['guesses_counter'] < 3:
                 words_to_show = int(0.3 * daily_quote['word_count'])
@@ -213,7 +227,7 @@ def quote():
         quote_author=daily_quote['author'],
         quote_link=daily_quote['link'],
         quote_wav=daily_quote['wav'],
-        result=user_session['result'],
+        quote_result=user_session['quote_result'],
         guessed_quotes=user_session['guessed_quotes'],
         guesses_counter=user_session['guesses_counter'],
         hint_used=user_session['hint_used'],

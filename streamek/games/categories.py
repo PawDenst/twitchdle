@@ -5,6 +5,7 @@ import os
 import logging
 import requests
 from datetime import datetime, timedelta
+from stats import update_user_stats
 
 categories_app = Blueprint('categories_app', __name__)
 
@@ -13,14 +14,22 @@ categories_app = Blueprint('categories_app', __name__)
 
 
 used_streamers_file = 'website/data/hidden_streamers.json'
+streamers_cache = None
+streamers_cache_last_updated = None
 
 
 # Function to load used streamers
 def load_used_streamers():
-    if os.path.exists(used_streamers_file):
-        with open(used_streamers_file, 'r', encoding='utf-8') as file:
-            return json.load(file).get('used', [])
-    return []
+    used_streamers_file = 'website/data/hidden_streamers.json'
+    if not os.path.exists(used_streamers_file):
+        with open(used_streamers_file, 'w') as file:
+            json.dump({"used": []}, file)
+    try:
+        if os.path.exists(used_streamers_file):
+            with open(used_streamers_file, 'r', encoding='utf-8') as file:
+                return json.load(file).get('used', [])
+    except json.JSONDecodeError:
+        return []
 
 
 # Function to save used streamers
@@ -44,10 +53,20 @@ def log_request_info():
     logging.info(f"Request from IP: {ip_address}, Method: {method}, URL: {url}, User-Agent: {user_agent}")
 
 
-# Function to load streamers data
 def load_streamers():
-    with open('website/data/updated_streamers.json', 'r', encoding='utf-8') as file:
-        return json.load(file)["streamers"]
+    global streamers_cache
+    global streamers_cache_last_updated
+
+    file_path = 'website/data/updated_streamers.json'
+    last_modified = datetime.fromtimestamp(os.path.getmtime(file_path))
+
+    # If cache is empty or the file has been updated, reload the cache
+    if streamers_cache is None or streamers_cache_last_updated < last_modified:
+        with open(file_path, 'r', encoding='utf-8') as file:
+            streamers_cache = json.load(file)["streamers"]
+        streamers_cache_last_updated = last_modified
+
+    return streamers_cache
 
 
 streamer = None
@@ -120,27 +139,8 @@ def generate_summary(compared_data):
     return summary
 
 
-def verify_recaptcha(token):
-    secret_key = 'key'  # Replace with your secret key
-    recaptcha_url = 'https://www.google.com/recaptcha/api/siteverify'
-    response = requests.post(recaptcha_url, data={
-        'secret': secret_key,
-        'response': token
-    })
-    result = response.json()
-    print(f"reCAPTCHA verification result: {result}")  # Debugging line
-    return result.get('success', False)
-
-
 @categories_app.route('/categories', methods=['GET', 'POST'])
 def index():
-    if request.method == 'POST':
-        recaptcha_response = request.form.get('g-recaptcha-response')
-        if not verify_recaptcha(recaptcha_response):
-            return jsonify({"error": "reCAPTCHA verification failed"}), 400
-
-    # Your existing code to load streamers and handle form submission...
-
     streamers = load_streamers()
     user_session = g.session_data
 
@@ -160,6 +160,8 @@ def index():
 
     print(user_session['hidden_streamer'])
     logging.info(f"Hidden Streamer: {user_session['hidden_streamer']}")
+
+    ip_address = request.remote_addr
 
     # Process POST request when user submits a guess
     if request.method == 'POST' and not user_session['success_message']:
@@ -210,6 +212,18 @@ def index():
                 if guessed_streamer == user_session['hidden_streamer'].lower():
                     user_session['success_message'] = True
                     increment_completion_count()
+                    won = True
+                    first_try = user_session['attempt_count'] == 1
+                    try:
+                        update_user_stats(user_session['attempt_count'], won, first_try, 'categories')
+                    except Exception as e:
+                        print(f"Error updating user stats: {e}")  # Handle the error (optional logging)
+                else:
+                    won = False
+                    try:
+                        update_user_stats(user_session['attempt_count'], won, False, 'categories')
+                    except Exception as e:
+                        print(f"Error updating user stats: {e}")  # Handle the error (optional logging)
 
                 if original_name in user_session['available_streamers']:
                     user_session['available_streamers'].remove(original_name)
@@ -251,6 +265,7 @@ def index():
                            guessed_summaries=user_session['guessed_summaries'], completion_count=completion_count,
                            min_ranges=min_ranges)
 
+
 @categories_app.route('/restart', methods=['POST'])
 def restart():
     session.clear()
@@ -278,6 +293,7 @@ def get_time_until_reset():
         'minutes': (time_until_reset.seconds % 3600) // 60,
         'seconds': time_until_reset.seconds % 60
     }
+
 
 @categories_app.route('/time_until_reset')
 def time_until_reset():

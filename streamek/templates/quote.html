@@ -18,7 +18,8 @@
         <img src="static/logo.png" alt="Twitchdle">
     </a>
 </div>
-    {% if result == 'correct' %}
+    <div class="background-container" style="position: relative;">
+        {% if quote_result == 'correct' %}
        <div class="congratulations">
             <div class="congratulations-content text-center">
                 <h2 class="congratulations-title">Gratulacje!</h2>
@@ -27,18 +28,18 @@
                 <div class="counter-container">
                   <span id="correctGuessesCount" class="counter-number">{{ correct_guess_count }}</span> osób już zgadło
                 </div>
-                <p class="attempt-count-container" style="margin-top: 30px;">
+                <p class="attempt-count-container">
                     Liczba podejść: <span class="attempt-count" id="attemptCount">{{ guesses_counter }}</span>
                 </p>
                 <div class="youtube-container">
                 {% if 'youtube.com' in correct_guess_data.link %}
                     {% set youtube_id = correct_guess_data.link.split('v=')[1].split('&')[0] %}
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ youtube_id }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/{{ youtube_id }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 {% elif 'twitch.tv' in correct_guess_data.link %}
                     <iframe
                        src="https://clips.twitch.tv/embed?clip={{ correct_guess_data.clip_id }}&parent=127.0.0.1"
-                       height="315"
-                       width="560"
+                       height="280"
+                       width="475"
                        allowfullscreen
                        autoplay>
                     </iframe>
@@ -46,29 +47,39 @@
                 </div>
             </div>
             <div class="confetti"></div>
+           <div class="countdown-container">
+                Następny streamer pojawi się za:
+                <div id="countdown" style="margin-bottom: 15px"></div>
+            </div>
+            <a href="/avatar" class="btn btn-info quote-game-btn" id="quoteButton">
+                <div class="button-content">
+                    <img src="static/avatar.png" alt="Button Image" class="button-img">
+                    <span class="button-text">
+                        Avatar
+                        <span class="sub-text">Odgadnij streamera po avatarze</span>
+                    </span>
+                </div>
+            </a>
        </div>
     {% endif %}
-    <div class="background-container" style="position: relative;">
         <h1>Który streamer mówi</h1>
         <p>❝ {{ quote_text }} ❞</p>
-        <div>
-        {% if guesses_counter < 3 and result != 'correct' %}
+        {% if guesses_counter < 3 and quote_result != 'correct' %}
         <h2 style="font-size: 0.8rem; color: grey; margin-bottom: 10px">dłuższy cytat po {{ 3 - guesses_counter }} próbach</h2>
-            {% elif guesses_counter < 5 and result != 'correct' %}
+            {% elif guesses_counter < 5 and quote_result != 'correct' %}
         <h2 style="font-size: 0.8rem; color: grey; margin-bottom: 10px">dłuższy cytat po {{ 5 - guesses_counter }} próbach</h2>
         {% endif %}
-        </div>
         <div class="hint-container text-center">
             <form method="post">
                  <button type="submit" name="hint" class="btn btn-info submit-btn"
                     {% if guesses_counter < 4 or (hint_used and guesses_counter >= 4 and guesses_counter < 6) or sliced_wav_percentage == 100 %}disabled{% endif %}
-                    {% if result == 'correct' %}disabled{% endif %}>
-                    <img src="static/audio-icon.png" class="submit-img" style="max-width: 50px; max-height: 50px; margin-top: 0px; margin-bottom: -7px; margin-left: -5px">
+                    {% if quote_result == 'correct' %}disabled{% endif %}>
+                    <img src="static/audio-icon.png" class="submit-img" style="max-width: 50px; max-height: 50px; margin-top: 0px; margin-bottom: 0px; margin-left: -5px">
                 </button>
             </form>
-            {% if guesses_counter < 4 and result != 'correct' %}
+            {% if guesses_counter < 4 and quote_result != 'correct' %}
                 <span style="font-size: 0.68rem; color: grey;">wskazówka audio po {{ 4 - guesses_counter }} próbach</span>
-            {% elif hint_used and guesses_counter < 6 and result != 'correct' %}
+            {% elif hint_used and guesses_counter < 6 and quote_result != 'correct' %}
                 <span style="font-size: 0.68rem; color: grey;">dłuższe audio {{ 6 - guesses_counter }} próbach</span>
             {% endif %}
             {% if guesses_counter >= 4 and not hint_used %}
@@ -80,7 +91,7 @@
             <span class="tooltip-text">Maksymalna długość audio</span>
             {% endif %}
         </div>
-        {% if hint_used or result == 'correct' %}
+        {% if hint_used or quote_result == 'correct' %}
             <div class="audio-container">
                 <audio id="audio-player" controls>
                     <source src="{{ url_for('quote_app.get_audio_slice_endpoint', percentage=sliced_wav_percentage) }}" type="audio/wav">
@@ -90,7 +101,7 @@
         {% endif %}
         <div class="input-container">
             <form method="post">
-                {% if result == 'incorrect' or result == 'blank' %}
+                {% if quote_result == 'incorrect' or quote_result is none %}
                 <input type="text" id="streamer" name="streamer" placeholder="Wpisz nick streamera" autocomplete="off">
                 <button type="submit" class="btn btn-info submit-btn">
                     <img src="static/right-circular-64.png" class="submit-img" alt="Sprawdź">
@@ -113,11 +124,12 @@
     <script src="{{ url_for('static', filename='script_quote.js') }}"></script>
  <footer>
         <p>Stworzył pawelqq1</p>
+        <a href="https://tipo.live/p/twitchdle" target="_blank"><img src="static/dotacja.png" style="width: 5%; height: 5%" alt="Wesprzyj mnie"></a>
         <p>
 <!--            <a href="https://github.com/pawelqq1" class="github" target="_blank">GitHub</a> |-->
             <a href="https://twitter.com/pawelqq1" target="_blank">Twitter</a>
         </p>
-            <a href="/privacy_policy" style="color: #ffffff; font-size: 10px; padding: 10px; text-align: center;">Polityka prywatności</a>
+            <a href="/privacy_policy" style="color: #ffffff; font-size: 9px; padding: 8px; text-align: center;">Polityka prywatności</a>
     </footer>
 </body>
 </html>

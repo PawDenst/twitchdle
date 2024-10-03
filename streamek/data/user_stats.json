@@ -1,0 +1,140 @@
+{
+    "39b8c1ae-10e7-4608-9e25-e9ba1d9920ee": {
+        "categories": {
+            "games_played": 1,
+            "games_won": 1,
+            "total_attempts": 3,
+            "average_attempt_count": 3.0,
+            "first_try_wins": 0,
+            "daily_series": 1,
+            "longest_series": 1,
+            "last_played": "2024-09-21",
+            "won_today": true
+        },
+        "quotes": {
+            "games_played": 1,
+            "games_won": 1,
+            "total_attempts": 4,
+            "average_attempt_count": 4.0,
+            "first_try_wins": 0,
+            "daily_series": 1,
+            "longest_series": 1,
+            "last_played": "2024-09-21",
+            "won_today": true
+        },
+        "avatars": {
+            "games_played": 1,
+            "games_won": 1,
+            "total_attempts": 1,
+            "average_attempt_count": 1.0,
+            "first_try_wins": 1,
+            "daily_series": 1,
+            "longest_series": 1,
+            "last_played": "2024-09-21",
+            "won_today": true
+        },
+        "emotes": {
+            "games_played": 1,
+            "games_won": 1,
+            "total_attempts": 2,
+            "average_attempt_count": 2.0,
+            "first_try_wins": 0,
+            "daily_series": 1,
+            "longest_series": 1,
+            "last_played": "2024-09-21",
+            "won_today": true
+        }
+    },
+    "dca0c3ba-1101-4cf7-92b6-1f69e5a3cf29": {
+        "categories": {
+            "games_played": 0,
+            "games_won": 0,
+            "total_attempts": 0,
+            "average_attempt_count": 0.0,
+            "first_try_wins": 0,
+            "daily_series": 0,
+            "longest_series": 0,
+            "last_played": "",
+            "won_today": false
+        },
+        "quotes": {
+            "games_played": 1,
+            "games_won": 1,
+            "total_attempts": 1,
+            "average_attempt_count": 1.0,
+            "first_try_wins": 1,
+            "daily_series": 1,
+            "longest_series": 1,
+            "last_played": "2024-10-03",
+            "won_today": true
+        },
+        "avatars": {
+            "games_played": 1,
+            "games_won": 1,
+            "total_attempts": 1,
+            "average_attempt_count": 1.0,
+            "first_try_wins": 1,
+            "daily_series": 1,
+            "longest_series": 1,
+            "last_played": "2024-09-26",
+            "won_today": true
+        },
+        "emotes": {
+            "games_played": 1,
+            "games_won": 1,
+            "total_attempts": 1,
+            "average_attempt_count": 1.0,
+            "first_try_wins": 1,
+            "daily_series": 1,
+            "longest_series": 1,
+            "last_played": "2024-10-03",
+            "won_today": true
+        }
+    },
+    "46932f11-4ffa-4eaa-802b-d7f9438068ae": {
+        "categories": {
+            "games_played": 0,
+            "games_won": 0,
+            "total_attempts": 0,
+            "average_attempt_count": 0.0,
+            "first_try_wins": 0,
+            "daily_series": 0,
+            "longest_series": 0,
+            "last_played": "",
+            "won_today": false
+        },
+        "quotes": {
+            "games_played": 0,
+            "games_won": 0,
+            "total_attempts": 0,
+            "average_attempt_count": 0.0,
+            "first_try_wins": 0,
+            "daily_series": 0,
+            "longest_series": 0,
+            "last_played": "",
+            "won_today": false
+        },
+        "avatars": {
+            "games_played": 1,
+            "games_won": 1,
+            "total_attempts": 2,
+            "average_attempt_count": 2.0,
+            "first_try_wins": 0,
+            "daily_series": 1,
+            "longest_series": 1,
+            "last_played": "2024-09-26",
+            "won_today": true
+        },
+        "emotes": {
+            "games_played": 0,
+            "games_won": 0,
+            "total_attempts": 0,
+            "average_attempt_count": 0.0,
+            "first_try_wins": 0,
+            "daily_series": 0,
+            "longest_series": 0,
+            "last_played": "",
+            "won_today": false
+        }
+    }
+}

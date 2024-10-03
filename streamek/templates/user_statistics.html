@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitchdle</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_stats.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='favicon-16x16.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='apple-touch-icon.png') }}">
+    <link rel="manifest" href="{{ url_for('static', filename='site.webmanifest') }}">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>User Statistics</h1>
+
+        <!-- Flexbox container for side-by-side sections -->
+        <div class="stats-sections">
+            <!-- Categories Statistics Section -->
+            <div class="section">
+                <h2>Categories Statistics</h2>
+                <p>Games Played: <span>{{ user_data['categories'].games_played }}</span></p>
+                <p>Games Won: <span>{{ user_data['categories'].games_won }}</span></p>
+                <p>Total Attempts: <span>{{ user_data['categories'].total_attempts }}</span></p>
+                <p>Average Attempt Count: <span>{{ user_data['categories'].average_attempt_count }}</span></p>
+                <p>First Try Wins: <span>{{ user_data['categories'].first_try_wins }}</span></p>
+                <p>Daily Series: <span>{{ user_data['categories'].daily_series }}</span></p>
+                <p>Longest Series: <span>{{ user_data['categories'].longest_series }}</span></p>
+                <p>Last Played: <span>{{ user_data['categories'].last_played }}</span></p>
+            </div>
+
+             <!-- Emotes Statistics Section -->
+            <div class="section">
+                <h2>Emotes Statistics</h2>
+                <p>Games Played: <span>{{ user_data['emotes'].games_played }}</span></p>
+                <p>Games Won: <span>{{ user_data['emotes'].games_won }}</span></p>
+                <p>Total Attempts: <span>{{ user_data['emotes'].total_attempts }}</span></p>
+                <p>Average Attempt Count: <span>{{ user_data['emotes'].average_attempt_count }}</span></p>
+                <p>First Try Wins: <span>{{ user_data['emotes'].first_try_wins }}</span></p>
+                <p>Daily Series: <span>{{ user_data['emotes'].daily_series }}</span></p>
+                <p>Longest Series: <span>{{ user_data['emotes'].longest_series }}</span></p>
+                <p>Last Played: <span>{{ user_data['emotes'].last_played }}</span></p>
+            </div>
+
+            <!-- Quotes Statistics Section -->
+            <div class="section">
+                <h2>Quotes Statistics</h2>
+                <p>Games Played: <span>{{ user_data['quotes'].games_played }}</span></p>
+                <p>Games Won: <span>{{ user_data['quotes'].games_won }}</span></p>
+                <p>Total Attempts: <span>{{ user_data['quotes'].total_attempts }}</span></p>
+                <p>Average Attempt Count: <span>{{ user_data['quotes'].average_attempt_count }}</span></p>
+                <p>First Try Wins: <span>{{ user_data['quotes'].first_try_wins }}</span></p>
+                <p>Daily Series: <span>{{ user_data['quotes'].daily_series }}</span></p>
+                <p>Longest Series: <span>{{ user_data['quotes'].longest_series }}</span></p>
+                <p>Last Played: <span>{{ user_data['quotes'].last_played }}</span></p>
+            </div>
+
+            <!-- Avatars Statistics Section -->
+            <div class="section">
+                <h2>Avatars Statistics</h2>
+                <p>Games Played: <span>{{ user_data['avatars'].games_played }}</span></p>
+                <p>Games Won: <span>{{ user_data['avatars'].games_won }}</span></p>
+                <p>Total Attempts: <span>{{ user_data['avatars'].total_attempts }}</span></p>
+                <p>Average Attempt Count: <span>{{ user_data['avatars'].average_attempt_count }}</span></p>
+                <p>First Try Wins: <span>{{ user_data['avatars'].first_try_wins }}</span></p>
+                <p>Daily Series: <span>{{ user_data['avatars'].daily_series }}</span></p>
+                <p>Longest Series: <span>{{ user_data['avatars'].longest_series }}</span></p>
+                <p>Last Played: <span>{{ user_data['avatars'].last_played }}</span></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

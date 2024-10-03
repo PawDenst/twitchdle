@@ -20,6 +20,22 @@
     <p class="header-text">
         Codziennie odgaduj polskich streamerów Twitch Tv!
     </p>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content" >
+            <span class="close">&times;</span>
+            <p>Koszty utrzymania strony nadwyrężają budżet studenta. Dorzuć donejta mordzia
+            <a href="https://tipo.live/p/twitchdle" target="_blank"><img src="static/dotacja.png" style="width: 15%; height: 15%; transform: translateY(15px);" alt="Wesprzyj mnie"></a>
+            </p>
+            <label>
+                <input type="checkbox" id="doNotShowAgain">
+                Nie pokazuj więcej tej wiadomości
+            </label>
+            <button id="okButton">OK</button>
+        </div>
+    </div>
+
     <div class="container">
         <a href="/categories" class="btn btn-info quote-game-btn">
             <div class="button-content">
@@ -53,13 +69,27 @@
             </div>
         </a>
     </div>
+    <div class="container">
+        <a href="/avatar" class="btn btn-info quote-game-btn">
+            <div class="button-content">
+                <img src="static/avatar.png" alt="Avatar" class="button-img">
+                <span class="button-text">
+                    Avatar
+                    <span class="sub-text">Odgadnij streamera po avatarze</span>
+                </span>
+            </div>
+        </a>
+    </div>
     <footer>
         <p>Stworzył pawelqq1</p>
+        <a href="https://tipo.live/p/twitchdle" target="_blank"><img src="static/dotacja.png" style="width: 5%; height: 5%" alt="Wesprzyj mnie"></a>
         <p>
 <!--            <a href="https://github.com/pawelqq1" class="github" target="_blank">GitHub</a> |-->
             <a href="https://twitter.com/pawelqq1" target="_blank">Twitter</a>
         </p>
-            <a href="/privacy_policy" style="color: #ffffff; font-size: 10px; padding: 10px; text-align: center;">Polityka prywatności</a>
+        <a href="/privacy_policy" style="color: #ffffff; font-size: 9px; padding: 8px; text-align: center;">Polityka prywatności</a>
     </footer>
+
+    <script src="static/script_main.js"></script>
 </body>
 </html>

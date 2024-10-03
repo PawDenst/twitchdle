@@ -22,23 +22,6 @@ current_streamer_index = None
 correct_guesses_counter = {'count': 0}
 
 
-@emotes_app.route('/verify_captcha', methods=['POST'])
-def verify_captcha():
-    data = request.get_json()
-    recaptcha_response = data.get('recaptcha_response')
-
-    secret_key = 'key'
-    payload = {
-        'secret': secret_key,
-        'response': recaptcha_response
-    }
-
-    response = requests.post('https://www.google.com/recaptcha/api/siteverify', data=payload)
-    result = response.json()
-
-    return jsonify({'success': result.get('success', False)})
-
-
 @emotes_app.before_request
 def log_request_info():
     # Extract the real IP address

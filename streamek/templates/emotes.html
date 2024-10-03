@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5128286852536730"
+     crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Twitchdle</title>
@@ -19,7 +21,10 @@
             <img src="static/logo.png" alt="Twitchdle">
         </a>
     </div>
-    <div class="congratulations" id="congratulations" style="display: none;">
+
+    <div class="background-container">
+
+        <div class="congratulations" id="congratulations" style="display: none;">
         <div class="congratulations-content text-center">
             <h2 class="congratulations-title">Gratulacje!</h2>
             <p class="congratulations-message">Odgadłeś dzisiejszego streamera!</p>
@@ -27,7 +32,7 @@
             <div class="counter-container">
                 <span id="correctGuessesCount" class="counter-number">0</span> osób już zgadło
             </div>
-            <p class="attempt-count-container" style="margin-top: 30px;">
+            <p class="attempt-count-container">
                 Liczba podejść: <span class="attempt-count" id="attemptCount">0</span>
             </p>
             <div class="countdown-container">
@@ -47,10 +52,8 @@
         <div class="confetti"></div>
     </div>
 
-    <div class="background-container">
         <h1>Jakiego streamera opisują te emotki?</h1>
         <div id="emojis"></div>
-
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
         <script src="../static/script_emotes.js"></script>
@@ -69,14 +72,13 @@
         </div>
     </div>
 
-
-
     <footer>
         <p>Stworzył pawelqq1</p>
+        <a href="https://tipo.live/p/twitchdle" target="_blank"><img src="static/dotacja.png" style="width: 5%; height: 5%" alt="Wesprzyj mnie"></a>
         <p>
             <a href="https://twitter.com/pawelqq1" target="_blank">Twitter</a>
         </p>
-        <a href="/privacy_policy" style="color: #ffffff; font-size: 10px; padding: 10px; text-align: center;">Polityka prywatności</a>
+        <a href="/privacy_policy" style="color: #ffffff; font-size: 9px; padding: 8px; text-align: center;">Polityka prywatności</a>
     </footer>
 </body>
 <button id="restartButton" style="display: none;"></button>

@@ -1,0 +1,348 @@
+body {
+    background-image: url('collage.png');
+    background-size: auto;
+    background-position: center;
+     font-family: 'Source Sans Pro', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 200;
+    font-size: 17px;
+    src: url(https://fonts.gstatic.com/s/sourcesanspro/v22/6xKydSBYKcSV-LCoeQqfX1RYOo3i94_wmhduz8A.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+    margin: 0; /* Reset default margin */
+    padding: 0; /* Reset default padding */
+
+}
+
+.logo {
+   text-align: center;
+   align-items: center;
+    }
+
+
+h1 {
+    margin-top: 0px;
+    text-align: center;
+    color: #fff;
+}
+
+h2 {
+    margin-bottom: 30px;
+    text-align: center;
+    color: #fff;
+}
+
+h3 {
+    color: #fff; /* White text color for better contrast */
+    margin-top: 10px;
+    text-align: center;
+}
+
+.background-container {
+    background-color: #1e2328; /* Dark background */
+    padding: 20px;
+    border-radius: 15px;
+    margin: 50px auto; /* Center vertically and horizontally */
+    margin-top: 20px;
+    max-width: 600px; /* Limit container width */
+    color: #fff; /* White text color for better contrast */
+    box-shadow: 0 0 0 1.75px #470099;
+}
+
+.known-words,
+.unknown-words {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.unknown-words .word-box.unknown {
+    padding: 5px 25px;
+    color: #495057;
+    background-color: #f0f0f0;
+    border-radius: 25px;
+    display: inline-block;
+    margin-bottom: 5px;
+    box-shadow: 0 0 0 1.75px #470099;
+    opacity: 0; /* Initially hidden */
+    animation: reveal 2s forwards; /* Apply animation to reveal unknown words */
+}
+
+.word-box.filled {
+    opacity: 0;
+    animation: reveal 0.5s forwards;
+}
+
+@keyframes reveal {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.guess-input-container {
+        position: relative;
+        display: flex;
+        margin-top: 10px;
+        align-items: center;
+        border: 2px solid #470099; /* Border */
+        border-radius: 20px; /* Rounded shape */
+        background-color: #181c20; /* Light background color */
+        padding: 10px; /* Add padding */
+}
+
+/* Styling for predefined name form */
+
+.predefined-input {
+    margin-top: 15px;
+    width: calc(85% - 20px); /* Adjusted width */
+    padding: 20px;
+    font-size: 1.1em;
+    border: 2px solid #007bff;
+    border-radius: 15px;
+    outline: none;
+    transition: border-color 0.3s ease;
+    background-color: #fff;
+    color: #333;
+    float: left; /* Float the input box to the left */
+}
+
+.guess-input {
+    width: calc(100% - 20px); /* Adjusted width */
+    padding: 15px;
+    font-size: 1.1em;
+    border: 2px solid #9146ff;
+    border-radius: 15px; /* Rounded shape for input box */
+    outline: none;
+    transition: border-color 0.3s ease;
+    background-color: #fff; /* White background */
+    color: #333; /* Text color */
+}
+
+.correct-guesses {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 15px;
+    background-color: #495057;
+}
+
+.correct-guesses p {
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+
+/* Styling for guessed sentence section */
+.guessed-sentence {
+    margin-bottom: 30px;
+    border-radius: 20px;
+    background-color: #1e2328; /* Dark background */
+
+}
+.guessed-sentence h2 {
+    font-size: 1.8em;
+    color: #f5f5f5; /* White text color */
+    margin-bottom: 15px;
+    text-align: center;
+}
+.guessed-sentence p {
+    font-size: 1.2em;
+    color: #d3d3d3; /* Brighter grey for text */
+    text-align: center;
+    line-height: 1.5;
+}
+
+.submit-btn {
+    margin-left: 2px; /* Adjust margin as needed */
+    background-color: transparent; /* Set background color to transparent */
+    border-color: transparent; /* Set border color to transparent */
+    outline: none; /* Remove default outline */
+}
+
+.submit-btn:hover {
+    background-color: transparent !important; /* Override default hover background color */
+    border-color: transparent !important; /* Override default hover border color */
+    filter: brightness(125%);
+
+}
+.submit-btn:focus {
+    outline: none !important; /* Remove default focus outline */
+}
+
+.btn-info[disabled] {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.btn:disabled .submit-img {
+            filter: grayscale(100%);
+        }
+
+ .hint-container {
+    position: relative;
+    display: inline-block; /* Ensure the hint container is inline */
+}
+
+.hint-container .tooltip-text {
+    visibility: hidden;
+    width: 150px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    left: 105%; /* Position the tooltip to the right of the image */
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.hint-container .tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 100%; /* Arrow at the left of the tooltip */
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent black transparent transparent;
+}
+
+.hint-container:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+.congratulations-section {
+    background-color: #181c20; /* Light background color */
+    color: white; /* White text color */
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 0 3px #470099;
+}
+.congratulations-content h5 {
+    margin-bottom: 10px;
+}
+.congratulations-content p {
+    margin-bottom: 40px;
+}
+.custom-btn {
+    background-color: #470099; /* Custom button background color */
+    border-color: #470099; /* Custom button border color */
+    color: white; /* Button text color */
+}
+
+
+.congratulations {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #9146ff;
+    border-top: 2px solid #721de0;
+    padding: 20px 0;
+    z-index: 10;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    animation: slideUp 1s ease-out;
+}
+
+.congratulations-content {
+    position: relative;
+    padding: 20px;
+}
+
+.congratulations-title {
+    font-size: 2.5em;
+    color: #ffba61;
+    margin-bottom: 10px;
+    animation: pop 1s ease-out;
+}
+
+.congratulations-message {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.celebration-img {
+    width: 100px;
+    height: auto;
+    animation: bounce 2s infinite;
+}
+
+.confetti {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
+
+@keyframes pop {
+    0% { transform: scale(0); }
+    100% { transform: scale(1); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.confetti-piece {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #FFD700;
+    animation: fall 3s infinite;
+}
+
+@keyframes fall {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(100vh); }
+}
+
+.game-bad-info{
+margin-top: 30px;
+}
+
+.skip-stage-container {
+    margin-top: 20px;
+}
+
+.btn.skip-btn {
+    background-color: #ffcc00;
+    color: #fff;
+}
+
+.btn.skip-btn:hover {
+    background-color: #ffb300;
+}
+
+.incorrect-guesses-box {
+    margin: 50px auto; /* Center vertically and horizontally */
+    margin-top: 20px;
+    max-width: 600px; /* Limit container width */
+    background-color: #df5858; /* Light pink background */
+    border-radius: 25px;
+    border: 2px solid #ff8686;
+    padding: 10px; /* Padding around the box */
+    margin-top: 20px; /* Spacing from the top */
+}
+
+.incorrect-guesses-title {
+    color: white; /* Change to green */
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.incorrect-guesses {
+    font-size: 18px;
+    color: white; /* Change to green */
+    margin-top: 5px;
+}
