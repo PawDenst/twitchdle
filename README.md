@@ -19,6 +19,7 @@ Jest pięć trybów gry:
 **Serwer**
 Projekt działa na serwerze NGINX, który pełni rolę serwera HTTP i proxy reversowego. NGINX jest skonfigurowany do obsługi ruchu do aplikacji, optymalizując wydajność oraz zarządzanie ruchem.
 **Języki programowania**
+<br>
 Logika gry została napisana w Pythonie oraz JavaScripcie.
 
 ## Zrzuty ekranu
