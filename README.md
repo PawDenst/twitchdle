@@ -2,11 +2,11 @@
 Twitchdle jest aplikacją do codziennego zgadywania streamerów z platformy Twitch.tv.
 
 Jest pięć trybów gry:
-Klasyczny - odgadnij streamera po jego statystykach z ostatniego miesiąca
-Emotki - odgadnij streamera po jego emotkach lub emotkach z nim kojarzonym
-Cytat - odgadnij streamera na podstawie jego cytatu
-Avatar - odgadnij streamera na podstawie jego avatara 
-Topowe Emotki - odgadnij streamera na podstawie najczęściej używanych emotek i komend na jego czacie
+- **Klasyczny** - odgadnij streamera po jego statystykach z ostatniego miesiąca
+- **Emotki** - odgadnij streamera po jego emotkach lub emotkach z nim kojarzonym
+- **Cytat** - odgadnij streamera na podstawie jego cytatu
+- **Avatar** - odgadnij streamera na podstawie jego avatara 
+- **Topowe Emotki** - odgadnij streamera na podstawie najczęściej używanych emotek i komend na jego czacie
 
 Logika gry została napisana w pythonie oraz JavaScripcie.
 
