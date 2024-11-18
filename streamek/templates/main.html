@@ -4,29 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Twitchdle - Codziennie odgaduj polskich streamerów Twitch Tv!</title>
-    <link rel="stylesheet" href="../static/main_styles.css">
-    <link rel="icon" href="../static/favicon.ico" type="image/x-icon">
-    <link rel="icon" type="image/png" sizes="32x32" href="../static/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../static/favicon-16x16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="../static/apple-touch-icon.png">
+    <link rel="stylesheet" href="../static/css/main_styles.css">
+    <link rel="icon" href="../static/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="32x32" href="../static/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../static/images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../static/images/apple-touch-icon.png">
     <link rel="manifest" href="../static/site.webmanifest">
 </head>
 <body>
     <div class="logo">
         <a href="/">
-            <img src="static/logo.png" alt="Twitchdle">
+            <img src="static/images/logo.png" alt="Twitchdle">
         </a>
     </div>
-    <p class="header-text">
+    <p class="header-text" style="margin-top: -7px">
         Codziennie odgaduj polskich streamerów Twitch Tv!
     </p>
 
+
+<div class="stats-button" style="position: fixed; top: 20px; right: 20px; display: inline-block;">
+    <a href="/user_statistics" style="display: inline-block; background-color: rgba(0, 0, 0, 0.7); border-radius: 5px; padding: 10px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); border: 2px dotted white;">
+        <img src="static/images/staty.png" alt="Check Stats" style="cursor: pointer; display: block;">
+    </a>
+</div>
+
+
     <!-- Modal -->
     <div id="modal" class="modal">
-        <div class="modal-content" >
+        <div class="modal-content">
             <span class="close">&times;</span>
             <p>Koszty utrzymania strony nadwyrężają budżet studenta. Dorzuć donejta mordzia
-            <a href="https://tipo.live/p/twitchdle" target="_blank"><img src="static/dotacja.png" style="width: 15%; height: 15%; transform: translateY(15px);" alt="Wesprzyj mnie"></a>
+            <a href="https://tipo.live/p/twitchdle" target="_blank"><img src="static/images/dotacja.png" style="width: 15%; height: 15%; transform: translateY(15px);" alt="Wesprzyj mnie"></a>
             </p>
             <label>
                 <input type="checkbox" id="doNotShowAgain">
@@ -36,10 +44,11 @@
         </div>
     </div>
 
+    <div class="container-wrapper">
     <div class="container">
         <a href="/categories" class="btn btn-info quote-game-btn">
             <div class="button-content">
-                <img src="static/button7.png" alt="Klasyczny" class="button-img">
+                <img src="static/images/button7.png" alt="Klasyczny" class="button-img">
                 <span class="button-text">
                     Klasyczny
                     <span class="sub-text">Otrzymuj wskazówki przy każdej próbie</span>
@@ -50,7 +59,7 @@
     <div class="container">
         <a href="/emotes" class="btn btn-info quote-game-btn">
             <div class="button-content">
-                <img src="static/button8.png" alt="Emotki" class="button-img">
+                <img src="static/images/button8.png" alt="Emotki" class="button-img">
                 <span class="button-text">
                     Emotki
                     <span class="sub-text">Odkrywaj emotki przy każdej próbie</span>
@@ -61,7 +70,7 @@
     <div class="container">
         <a href="/quote" class="btn btn-info quote-game-btn">
             <div class="button-content">
-                <img src="static/cytat.png" alt="Cytat" class="button-img">
+                <img src="static/images/cytat.png" alt="Cytat" class="button-img">
                 <span class="button-text">
                     Cytat
                     <span class="sub-text">Odgadnij streamera po cytacie</span>
@@ -72,7 +81,7 @@
     <div class="container">
         <a href="/avatar" class="btn btn-info quote-game-btn">
             <div class="button-content">
-                <img src="static/avatar.png" alt="Avatar" class="button-img">
+                <img src="static/images/avatar.png" alt="Avatar" class="button-img">
                 <span class="button-text">
                     Avatar
                     <span class="sub-text">Odgadnij streamera po avatarze</span>
@@ -80,16 +89,36 @@
             </div>
         </a>
     </div>
+
+        <div class="container">
+        <a href="/stream_stats" class="btn btn-info quote-game-btn">
+            <div class="button-content">
+                <img src="static/images/button9.png" alt="Topowe Emotki" class="button-img">
+                <span class="button-text">
+                    Topowe Emotki
+                    <span class="sub-text">Odgadnij streamera po topowych emotkach</span>
+                </span>
+            </div>
+        </a>
+    </div>
+</div>
+
+
     <footer>
         <p>Stworzył pawelqq1</p>
-        <a href="https://tipo.live/p/twitchdle" target="_blank"><img src="static/dotacja.png" style="width: 5%; height: 5%" alt="Wesprzyj mnie"></a>
         <p>
-<!--            <a href="https://github.com/pawelqq1" class="github" target="_blank">GitHub</a> |-->
             <a href="https://twitter.com/pawelqq1" target="_blank">Twitter</a>
         </p>
+        <a href="https://tipo.live/p/twitchdle" target="_blank"><img src="static/images/dotacja.png" style="width: 5%; height: 5%" alt="Wesprzyj mnie"></a>
+
+         <p>
+        <a href="https://luglawhaulsano.net/4/8219994" target="_blank">Kliknij w reklamę i daj zarobić</a>
+        </p>
+
         <a href="/privacy_policy" style="color: #ffffff; font-size: 9px; padding: 8px; text-align: center;">Polityka prywatności</a>
     </footer>
 
-    <script src="static/script_main.js"></script>
+    <script src="static/js/script_main.js"></script>
 </body>
 </html>
+

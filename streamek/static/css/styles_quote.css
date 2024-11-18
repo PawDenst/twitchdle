@@ -1,0 +1,663 @@
+body {
+    background-image: url('../images/twitchdle_background.png');
+    background-size: auto;
+    background-position: center;
+     font-family: 'Source Sans Pro', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 200;
+    font-size: 14.5px;
+    src: url(https://fonts.gstatic.com/s/sourcesanspro/v22/6xKydSBYKcSV-LCoeQqfX1RYOo3i94_wmhduz8A.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    flex: 1;
+    padding-bottom: 100px; /* Ensure there's enough space to push the footer down */
+}
+
+.logo {
+   text-align: center;
+   align-items: center;
+   height: auto /* Decrease height */
+   width: auto; /* Decrease width */
+    }
+
+p {
+    font-size: 1.2em;
+    text-align: center;
+    color: #fff;
+}
+
+h1 {
+    text-align: center;
+    color: #fff;
+}
+
+h2 {
+    margin-top: 0px;
+    margin-bottom: 25px;
+    text-align: center;
+    color: #fff;
+}
+
+h3 {
+    color: #fff; /* White text color for better contrast */
+    margin-top: 10px;
+    text-align: center;
+}
+
+.background-container {
+    background-color: #1e2328; /* Dark background */
+    padding: 10px; /* Decrease padding */
+    border-radius: 10px; /* Decrease border radius */
+    margin: auto; /* Center vertically and horizontally */
+    margin-top: 10px; /* Decrease margin */
+    width: 100%;
+    max-width: 950px; /* Decrease container width */
+    color: #fff; /* White text color for better contrast */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    box-shadow: 0 0 0 3.5px #470099;
+    height: auto;
+}
+
+.input-container {
+    display: flex;
+    justify-content: center; /* Center the container horizontally */
+    margin: 0 auto; /* Center the container horizontally */
+    margin-top: 10px;
+}
+
+.input-container form {
+    display: flex;
+    align-items: center; /* Align children vertically */
+}
+
+.input-container label {
+    margin-right: 10px; /* Add space between the label and the input */
+}
+
+.input-container input[type="text"] {
+    padding: 20px;
+    height: 60px;
+    width: 300px;
+    font-size: 16px;
+    border: 2px solid #470099;
+    border-radius: 20px; /* Decrease border radius */
+    background-color: #181c20; /* Light background color */
+    transition: border-color 0.3s ease;
+    color: #FFFFFF; /* Text color */
+    outline: none;
+    box-shadow: none; /* Removes the default blue border shadow */
+    margin-right: 0px; /* Adds space between the input and the button */
+}
+
+.submit-btn {
+    margin-left: 0px; /* Adjust margin as needed */
+    background-color: transparent; /* Set background color to transparent */
+    border-color: transparent; /* Set border color to transparent */
+    outline: none; /* Remove default outline */
+}
+
+.submit-btn:hover {
+    background-color: transparent !important; /* Override default hover background color */
+    border-color: transparent !important; /* Override default hover border color */
+    filter: brightness(125%);
+
+}
+.submit-btn:focus {
+    outline: none !important; /* Remove default focus outline */
+}
+
+.btn-info[disabled] {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.btn:disabled .submit-img {
+            filter: grayscale(100%);
+        }
+
+.hint-container {
+    position: relative;
+    display: inline-block; /* Ensure the hint container is inline */
+}
+
+.hint-container .tooltip-text {
+    visibility: hidden;
+    width: 150px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    left: 105%; /* Position the tooltip to the right of the image */
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.hint-container .tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 100%; /* Arrow at the left of the tooltip */
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent black transparent transparent;
+}
+
+.hint-container:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+
+.congratulations {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    height: 63em;
+    max-height: 100%;
+    background-color: #721de0;
+    border: 2px solid #5e0cc2;
+    padding: 20px 0;
+    z-index: 10;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    animation: slideUp 1s ease-out;
+}
+
+@media (max-width: 768px) {
+    .congratulations {
+    height: 58em;
+    max-height: 1000px;
+    }
+}
+
+.congratulations:hover {
+    filter: brightness(110%);
+}
+
+.congratulations-content {
+    position: relative;
+    padding: 20px;
+}
+
+.congratulations-content h5 {
+    margin-bottom: 10px;
+}
+.congratulations-content p {
+    margin-bottom: 40px;
+}
+
+.congratulations-title {
+    font-size: 2.5em;
+    color: #ffba61;
+    margin-bottom: 10px;
+    animation: pop 1s ease-out;
+}
+
+.congratulations-message {
+    font-size: 1.5em;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.celebration-img {
+    width: 100px;
+    height: auto;
+    animation: bounce 2s infinite;
+}
+
+.confetti {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
+
+@keyframes pop {
+    0% { transform: scale(0); }
+    100% { transform: scale(1); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.confetti-piece {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #FFD700;
+    animation: fall 3s infinite;
+}
+
+@keyframes fall {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(100vh); }
+}
+
+.congratulations {
+
+.celebration-img {
+    width: 120px; /* Decrease width */
+    height: 120px; /* Decrease height */
+}}
+
+.countdown-container {
+    color: white;
+    text-align: center;
+    margin-top: 18px;
+    font-size: 22px;
+}
+
+#countdown {
+    font-size: 22px;
+    font-weight: bold;
+     color: pink;
+}
+
+.streamer-image {
+    margin-top:10px;
+    margin-bottom:3px;
+    flex: 0 0 40px; /* Prevent the image from shrinking or growing */
+    width: 40px; /* Decrease width */
+    height: 40px; /* Decrease height */
+    border-radius: 50%; /* Make the image circular */
+}
+
+.streamer-image-small {
+    width: 30px; /* Adjust as needed */
+    height: 30px; /* Adjust as needed */
+
+}
+.guessed-streamer-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 30px;
+            justify-content: center;
+        }
+        .guessed-streamer-item {
+            background-color: #f04f43;
+            width: 500px;
+            color: #fff;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .guessed-streamer-image {
+            width: 50px;
+            height: auto;
+            margin-bottom: 10px;
+            border-radius: 50%;
+        }
+        .guessed-streamer-name {
+            font-size: 17px;
+            color: #fff;
+        }
+        .correct-guess {
+            background-color: green;
+        }
+        @keyframes shake {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            10%, 30%, 50%, 70%, 90% {
+                transform: translateX(-10px);
+            }
+            20%, 40%, 60%, 80% {
+                transform: translateX(10px);
+            }
+        }
+        .guessed-streamer.shake {
+            animation: shake 0.8s ease-in-out;
+        }
+        @keyframes skok {
+            0%, 10%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-30px);
+            }
+            60% {
+                transform: translateY(-15px);
+            }
+        }
+        .guessed-streamer.skok {
+            animation: skok 0.6s;
+        }
+
+@media (max-width: 768px) {
+    .guessed-streamer-container {
+        max-width: 100%;
+    }
+    .guessed-streamer-item {
+            max-width: 95%;
+        }
+}
+
+#streamer-list-container {
+    position: relative;
+}
+
+#streamer-list {
+    display: none;
+    position: absolute;
+    background-color: #f0f0f0;
+    top: calc(100% + 2px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 2px);
+    max-height: 150px; /* Adjusted max-height */
+    max-width: 500px;
+    overflow-y: auto;
+    background-color: #333;
+    border: 1px solid #555;
+    border-top: none;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+@media (max-width: 768px) {
+    #streamer-list {
+        width: 100%;
+        max-height: 300px; /* Increase height if necessary */
+    }
+}
+
+.streamer-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.streamer-item:hover {
+    background-color: #9146ff; /* Purple background on hover */
+    color: #fff; /* White text color on hover */
+}
+
+#streamer-list div {
+    padding: 10px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    border-bottom: 1px solid #555;
+}
+
+#streamer-list div:last-child {
+    border-bottom: none;
+}
+
+#streamer-list div:hover {
+    background-color: #555;
+}
+
+.attempt-count-container {
+    margin-top: 20px;
+    font-size: 1.5em; /* Adjust font size as needed */
+    font-family: Arial, sans-serif; /* Specify preferred font family */
+    color: white; /* Adjust text color */
+}
+
+.attempt-label {
+    font-weight: bold; /* Make the label "Number of tries:" bold */
+    color: black; /* Adjust color of the label */
+}
+
+.attempt-count {
+    font-weight: bold; /* Make the attempt count bold */
+    color: pink; /* Adjust color of the attempt count */
+}
+
+.counter-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    font-size: 20px;
+    font-family: Arial, sans-serif;
+    color: white;
+}
+
+.counter-container .counter-number {
+    color: pink; /* Initial color */
+    font-weight: bold;
+    transition: color 0.5s ease;
+    margin-left: 5px;
+    margin-right: 5px;/* Adjust the margin as needed */
+}
+
+.audio-container {
+    width: 100%;
+    max-width: 330px;
+    margin: auto;
+    margin-bottom: 20px;
+    margin-top: -20px;
+    padding: 10px;
+    text-align: center;
+}
+
+#audio-player {
+    width: 100%;
+    margin-top: 10px;
+    border-radius: 4px;
+}
+
+#audio-player::-webkit-media-controls-panel {
+    background-color: #5e0cc2; /* Indigo background for the control panel */
+    border-radius: 4px;
+}
+
+#audio-player::-webkit-media-controls-play-button,
+#audio-player::-webkit-media-controls-pause-button,
+#audio-player::-webkit-media-controls-mute-button,
+#audio-player::-webkit-media-controls-volume-slider {
+    filter: invert(100%);
+}
+
+#audio-player::-webkit-media-controls-current-time-display,
+#audio-player::-webkit-media-controls-time-remaining-display {
+    color: #fff; /* White text for the time display */
+}
+
+footer {
+    text-align: center;
+    padding: 5px;
+    background-color: #333;
+    color: white;
+    font-size: 17px;
+}
+
+footer p {
+    font-size: 1.2em;
+    margin: -3px 0;
+}
+
+footer a {
+    color: #1DA1F2; /* Twitter color */
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+footer a.github {
+    color: #4078c0; /* GitHub color */
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+.youtube-container {
+  display: flex;
+  justify-content: center; /* Centers the container horizontally */
+  margin: 0 auto; /* Centers the container horizontally */
+  width: 485px; /* Fixed width for the container */
+  height: 285px;
+  border: 8px solid #470099; /* Purple border with 3px width */
+  border-radius: 15px; /* Rounds the corners of the border */
+  padding: 0; /* Removes any default padding */
+  box-sizing: border-box; /* Ensures border is included in the width */
+}
+
+@media (max-width: 768px) {
+    .youtube-container {
+        width: 100%;
+        height: 100%; /* Increase height if necessary */
+    }
+}
+
+/* Responsive iframe styling */
+.youtube-container iframe {
+  width: 100%; /* Full width of the container */
+  height: 100%; /* Fixed height for the iframe */
+  border: none; /* Removes default iframe border */
+}
+
+.button-content {
+    position: relative;
+    display: flex;
+    justify-content: center; /* Center contents horizontally */
+    align-items: center; /* Center contents vertically */
+    height: 70px; /* Decrease height */
+}
+
+/* Style for the button image */
+.button-img {
+    width: 280px; /* Decrease width */
+    height: 70px; /* Decrease height */
+}
+
+/* Style for the button text */
+.button-text {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 16px; /* Adjust as needed */
+    white-space: nowrap; /* Prevent text from wrapping */
+    left: 55%; /* Center horizontally */
+    transform: translateX(-45%); /* Center horizontally */
+}
+
+.sub-text {
+    font-size: 12px; /* Smaller font size for the subtext */
+    color: #ccc; /* Lighter color for the subtext */
+    margin-top: 2px; /* Small margin to separate from the main text */
+}
+
+/* Additional styles for the play again button */
+.quote-game-btn {
+    background-color: transparent !important; /* Override default hover background color */
+    border-color: transparent !important; /* Override default hover border color */
+    border: none; /* Removes any default border */
+    outline: none; /* Remove default outline */
+    z-index: 1000; /* Ensure the button is above other elements */
+    position: relative; /* Ensures the z-index takes effect */
+    animation: zoomButton 0.6s infinite alternate; /* Animation for continuous zooming */
+    box-sizing: border-box; /* Ensures padding and border are included in width and height */
+    align-items: center; /* Ensures the button content is centered vertically */
+    justify-content: center; /* Ensures the button content is centered horizontally */
+    padding: 0; /* Removes any default padding */
+    height: 50px; /* Decrease height */
+    width: 50px; /* Decrease width */
+}
+
+@keyframes zoomButton {
+    0% {
+        transform: scale(1); /* Original size */
+    }
+    100% {
+        transform: scale(1.2); /* Zoomed out size */
+    }
+}
+
+.quote-game-btn:hover {
+    background-color: transparent !important; /* Override default hover background color */
+    border-color: transparent !important; /* Override default hover border color */
+    filter: brightness(125%);
+    animation-play-state: paused; /* Pause the animation on hover */
+}
+
+.quote-game-btn:focus {
+    outline: none !important; /* Remove default focus outline */
+}
+
+.stats-button {
+    width: 250px;
+    height: 250px;
+    cursor: pointer;
+    display: block;
+    margin-right: 50px;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: inline-block;
+
+}
+
+.stats-button img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover; /* Ensures the image scales properly without distortion */
+    cursor: pointer;
+    display: block;
+}
+
+.stats-button a {
+    display: inline-block;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    border: 2px dotted white;
+}
+
+@media (max-width: 768px) {
+    .stats-button {
+        width: 50px; /* Adjust this size as needed */
+        height: 50px; /* Adjust this size as needed */
+        margin-top: 110px;
+        margin-right: 35px;
+    }
+
+    .stats-button img {
+        width: 50px;
+        height: 50px;
+        margin-right: 35px;
+    }
+    .stats-button a {
+        width: 50px;
+        height: 50px;
+        margin-right: 35px;
+    }
+}

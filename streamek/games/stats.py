@@ -7,9 +7,9 @@ import threading
 
 user_stats_file = 'website/data/user_stats.json'
 
-
 # Load user statistics from the file
 file_lock = threading.Lock()
+
 
 # Modify the save_user_stats function to use the lock
 def save_user_stats(user_stats):
@@ -19,6 +19,7 @@ def save_user_stats(user_stats):
                 json.dump(user_stats, file, indent=4)
     except IOError as e:
         print(f"Error saving user stats: {e}")
+
 
 # Similarly, apply the lock in the load_user_stats function
 def load_user_stats():
@@ -31,6 +32,24 @@ def load_user_stats():
                 print("Error: Invalid JSON format in user_stats.json.")
                 return {}
         return {}
+
+
+# Calculate the global average attempt count for all users
+def calculate_global_average_attempts(game_type):
+    user_stats = load_user_stats()
+    total_attempts = 0
+    total_games = 0
+
+    # Loop through all users and sum the attempts and games played for the specified game type
+    for user_data in user_stats.values():
+        if game_type in user_data:
+            total_attempts += user_data[game_type]["total_attempts"]
+            total_games += user_data[game_type]["games_played"]
+
+    # Avoid division by zero
+    if total_games > 0:
+        return total_attempts / total_games
+    return 0.0
 
 
 # Get the current user ID or create a new one
@@ -53,8 +72,13 @@ def update_user_stats(attempts, won, first_try, game_type):
             "categories": init_game_stats(),
             "quotes": init_game_stats(),
             "avatars": init_game_stats(),
-            "emotes": init_game_stats()
+            "emotes": init_game_stats(),
+            "stats": init_game_stats()  # Initialize "stats"
         }
+
+    # Ensure the game_type key exists for the user
+    if game_type not in user_stats[user_id]:
+        user_stats[user_id][game_type] = init_game_stats()
 
     # Get game stats for the current game type
     user_data = user_stats[user_id][game_type]
@@ -95,6 +119,13 @@ def update_user_stats(attempts, won, first_try, game_type):
     # Save updated statistics
     user_stats[user_id][game_type] = user_data
     save_user_stats(user_stats)
+
+    # Calculate the global average attempt count for comparison
+    global_avg_attempts = calculate_global_average_attempts(game_type)
+    user_avg_attempts = user_data['average_attempt_count']
+
+    # Return this data for the template
+    return user_avg_attempts, global_avg_attempts
 
 
 # Initialize a new game statistics structure

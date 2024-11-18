@@ -10,7 +10,7 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS file -->
-    <link rel="stylesheet" href="../static/css/styles_avatar.css">
+    <link rel="stylesheet" href="../static/css/styles_stream_stats.css">
 
     <!-- Favicons -->
     <link rel="icon" href="../static/images/favicon.ico" type="image/x-icon">
@@ -27,55 +27,108 @@
      crossorigin="anonymous"></script>
 </head>
 <body>
-<div class="logo">
+    <div class="logo">
         <a href="/">
             <img src="static/images/logo.png" alt="Twitchdle">
         </a>
-</div>
+    </div>
 
-<div class="stats-button" style="position: fixed; top: 20px; right: 20px; display: inline-block;">
+    <div class="stats-button" style="position: fixed; top: 20px; right: 20px; display: inline-block;">
     <a href="/user_statistics" style="display: inline-block; background-color: rgba(0, 0, 0, 0.7); border-radius: 5px; padding: 10px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); border: 2px dotted white;">
         <img src="static/images/staty.png" alt="Check Stats" style="cursor: pointer; display: block;">
     </a>
 </div>
 
-    <div class="background-container">
-        {% if avatar_result == 'correct' %}
-   <div class="congratulations">
+    <div class="container background-container">
+        <h1 class="text-center mb-4">Guess the Streamer</h1>
+
+        {% if stats_result == 'correct' %}
+        <div class="congratulations">
         <div class="congratulations-content text-center">
             <h2 class="congratulations-title">Gratulacje!</h2>
             <p class="congratulations-message">Odgadłeś dzisiejszego streamera: <span style="color: pink;">{{ current_streamer }}</span></p>
-            <img class="celebration-img" src="{{ current_image_url }}" alt="{{ current_streamer }}">
+            <img class="celebration-img" src="{{ current_streamer_image_url }}" alt="{{ current_streamer }}">
             <div class="counter-container">
-              <span id="correctGuessesCount" class="counter-number">{{ avatar_correct_guess_count }}</span> osób już zgadło
+              <span id="correctGuessesCount" class="counter-number">{{ stats_correct_guess_count }}</span> osób już zgadło
             </div>
             <p class="attempt-count-container">
-                Liczba podejść: <span class="attempt-count" id="attemptCount">{{ avatar_guesses_counter }}</span>
+                Liczba podejść: <span class="attempt-count" id="attemptCount">{{ stats_guesses_counter }}</span>
             </p>
             <div class="countdown-container">
                 Następny streamer pojawi się za:
                 <div id="countdown" style="margin-bottom: 20px;"></div>
             </div>
-             <a href="/stream_stats" class="btn btn-info quote-game-btn" id="quoteButton">
-                <div class="button-content">
-                    <img src="static/images//button9.png" alt="Button Image" class="button-img">
-                    <span class="button-text">
-                        Topowe Emotki
-                        <span class="sub-text">Odgadnij streamera po topowych emotkach</span>
-                    </span>
-                </div>
-            </a>
         </div>
         <div class="confetti"></div>
    </div>
-{% endif %}
-        <h1>Jakiego streamera to avatar?</h1>
-                    <!-- Image section -->
-                    <div>
-                        <img id="image" src="data:image/png;base64,{{ image_data }}" alt="Streamer Avatar" class="image-avatar">
-                    </div>
-        {% if avatar_result == 'incorrect' or avatar_result == none %}
-            <div class="input-container">
+        {% endif %}
+
+        <div class="hints-section row">
+    <!-- Twitch Emotes Column -->
+    <div class="col-md-3 col-sm-6 text-center mb-4">
+        <h3>Twitch Emotes</h3>
+        <div class="d-flex flex-wrap justify-content-center">
+            {% for emote in twitch_hint %}
+            <div class="hint text-center mx-2 mb-3">
+                <img src="{{ emote.url }}" alt="{{ emote.name }}" class="img-fluid">
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- 7TV Emotes Column -->
+    <div class="col-md-3 col-sm-6 text-center mb-4">
+        <h3>7TV Emotes</h3>
+        <div class="d-flex flex-wrap justify-content-center">
+            {% for emote in tv_hint %}
+            <div class="hint text-center mx-2 mb-3">
+                <img src="{{ emote.url }}" alt="{{ emote.name }}" class="img-fluid">
+
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- BTTV Emotes Column -->
+    <div class="col-md-3 col-sm-6 text-center mb-4">
+        <h3>BTTV Emotes</h3>
+        <div class="d-flex flex-wrap justify-content-center">
+            {% for emote in bttv_hint %}
+            <div class="hint text-center mx-2 mb-3">
+                <img src="{{ emote.url }}" alt="{{ emote.name }}" class="img-fluid">
+
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- FFZ Emotes Column -->
+    <div class="col-md-3 col-sm-6 text-center mb-4">
+        <h3>FFZ Emotes</h3>
+        <div class="d-flex flex-wrap justify-content-center">
+            {% for emote in ffz_hint %}
+            <div class="hint text-center mx-2 mb-3">
+                <img src="{{ emote.url }}" alt="{{ emote.name }}" class="img-fluid">
+
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Commands Column -->
+    <div class="col-md-3 col-sm-6 text-center mb-4">
+        <h3>Top Commands</h3>
+        <div class="d-flex flex-wrap justify-content-center">
+            {% for command in command_hint_name %}
+            <div class="hint text-center mx-2 mb-3">{{ command }}</div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+        {% if stats_result == 'incorrect' or stats_result == none %}
+        <div class="input-container">
                 <form method="post">
                         <input type="text" id="streamer" name="streamer" placeholder="Wpisz nazwę streamera" autocomplete="off">
                         <button id="submit" class="btn btn-info submit-btn">
@@ -88,15 +141,17 @@
             <div id="streamer-list" style="display: none;"></div>
         </div>
         <div class="guessed-streamer-container">
-            {% for guessed in guessed_avatars %}
+            {% for guessed in guessed_stats %}
                 <div class="guessed-streamer-item guessed-streamer {% if loop.first %} {{ guessed.animation_class }}{% endif %}">
                     <img src="{{ guessed.image }}" alt="{{ guessed.name }}" class="guessed-streamer-image">
                     <div class="guessed-streamer-name">{{ guessed.name }}</div>
                 </div>
             {% endfor %}
         </div>
+
     </div>
-    <script src="{{ url_for('static', filename='js/script_avatar.js') }}"></script>
+<script src="{{ url_for('static', filename='js/script_stream_stats.js') }}"></script>
+    <!-- Footer -->
     <footer>
         <p>Stworzył pawelqq1</p>
         <a href="https://tipo.live/p/twitchdle" target="_blank"><img src="static/images/dotacja.png" style="width: 5%; height: 5%" alt="Wesprzyj mnie"></a>

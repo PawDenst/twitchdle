@@ -5,19 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Twitchdle</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles_quote.css') }}">
-    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicon-32x32.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='favicon-16x16.png') }}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='apple-touch-icon.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles_quote.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='images/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='images/favicon-16x16.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='images/apple-touch-icon.png') }}">
     <link rel="manifest" href="{{ url_for('static', filename='site.webmanifest') }}">
 </head>
 <body>
 <div class="logo">
     <a href="/">
-        <img src="static/logo.png" alt="Twitchdle">
+        <img src="static/images/logo.png" alt="Twitchdle">
     </a>
 </div>
+
+<div class="stats-button" style="position: fixed; top: 20px; right: 20px; display: inline-block;">
+    <a href="/user_statistics" style="display: inline-block; background-color: rgba(0, 0, 0, 0.7); border-radius: 5px; padding: 10px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); border: 2px dotted white;">
+        <img src="static/images/staty.png" alt="Check Stats" style="cursor: pointer; display: block;">
+    </a>
+</div>
+
     <div class="background-container" style="position: relative;">
         {% if quote_result == 'correct' %}
        <div class="congratulations">
@@ -53,7 +60,7 @@
             </div>
             <a href="/avatar" class="btn btn-info quote-game-btn" id="quoteButton">
                 <div class="button-content">
-                    <img src="static/avatar.png" alt="Button Image" class="button-img">
+                    <img src="static/images/avatar.png" alt="Button Image" class="button-img">
                     <span class="button-text">
                         Avatar
                         <span class="sub-text">Odgadnij streamera po avatarze</span>
@@ -74,7 +81,7 @@
                  <button type="submit" name="hint" class="btn btn-info submit-btn"
                     {% if guesses_counter < 4 or (hint_used and guesses_counter >= 4 and guesses_counter < 6) or sliced_wav_percentage == 100 %}disabled{% endif %}
                     {% if quote_result == 'correct' %}disabled{% endif %}>
-                    <img src="static/audio-icon.png" class="submit-img" style="max-width: 50px; max-height: 50px; margin-top: 0px; margin-bottom: 0px; margin-left: -5px">
+                    <img src="static/images/audio-icon.png" class="submit-img" style="max-width: 50px; max-height: 50px; margin-top: 0px; margin-bottom: 0px; margin-left: -5px">
                 </button>
             </form>
             {% if guesses_counter < 4 and quote_result != 'correct' %}
@@ -104,7 +111,7 @@
                 {% if quote_result == 'incorrect' or quote_result is none %}
                 <input type="text" id="streamer" name="streamer" placeholder="Wpisz nick streamera" autocomplete="off">
                 <button type="submit" class="btn btn-info submit-btn">
-                    <img src="static/right-circular-64.png" class="submit-img" alt="Sprawdź">
+                    <img src="static/images/right-circular-64.png" class="submit-img" alt="Sprawdź">
                 </button>
                 {% endif %}
             </form>
@@ -121,10 +128,10 @@
             {% endfor %}
         </div>
     </div>
-    <script src="{{ url_for('static', filename='script_quote.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/script_quote.js') }}"></script>
  <footer>
         <p>Stworzył pawelqq1</p>
-        <a href="https://tipo.live/p/twitchdle" target="_blank"><img src="static/dotacja.png" style="width: 5%; height: 5%" alt="Wesprzyj mnie"></a>
+        <a href="https://tipo.live/p/twitchdle" target="_blank"><img src="static/images/dotacja.png" style="width: 5%; height: 5%" alt="Wesprzyj mnie"></a>
         <p>
 <!--            <a href="https://github.com/pawelqq1" class="github" target="_blank">GitHub</a> |-->
             <a href="https://twitter.com/pawelqq1" target="_blank">Twitter</a>

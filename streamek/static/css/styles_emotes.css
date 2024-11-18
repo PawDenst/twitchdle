@@ -1,0 +1,637 @@
+body {
+    background-image: url('../images/twitchdle_background.png');
+    background-size: auto;
+    background-position: center;
+    font-family: 'Source Sans Pro', Arial, sans-serif;
+    font-style: normal;
+    font-weight: 200;
+    font-size: 14.5px;
+    src: url(https://fonts.gstatic.com/s/sourcesanspro/v22/6xKydSBYKcSV-LCoeQqfX1RYOo3i94_wmhduz8A.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    flex: 1;
+    padding-bottom: 100px; /* Ensure there's enough space to push the footer down */
+}
+
+.logo {
+   text-align: center;
+   align-items: center;
+   height: auto /* Decrease height */
+   width: auto; /* Decrease width */
+    }
+
+.background-container {
+    background-color: #1e2328; /* Dark background */
+    padding: 10px; /* Decrease padding */
+    border-radius: 10px; /* Decrease border radius */
+    margin: auto; /* Center vertically and horizontally */
+    margin-top: 10px; /* Decrease margin */
+    width: 100%;
+    max-width: 1000px;
+    color: #fff; /* White text color for better contrast */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    box-shadow: 0 0 0 3.5px #470099;
+    position: relative;
+    height: auto;
+}
+
+.input-container {
+    display: flex;
+    justify-content: center; /* Center the container horizontally */
+    margin: 0 auto; /* Center the container horizontally */
+}
+
+.input-container form {
+    display: flex;
+    align-items: center; /* Align children vertically */
+}
+
+.input-container label {
+    margin-right: 10px; /* Add space between the label and the input */
+}
+
+.input-container input[type="text"] {
+    padding: 20px;
+    width: 300px;
+    font-size: 16px;
+    border: 2px solid #470099;
+    border-radius: 20px; /* Rounded shape */
+    background-color: #181c20; /* Light background color */
+    transition: border-color 0.3s ease;
+    color: #FFFFFF; /* Text color */
+    outline: none;
+    margin-right: 10px; /* Adds space between the input and the button */
+}
+
+h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+#emojis {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center; /* Center vertically */
+    margin: 30px;
+}
+
+.emoji, .placeholder {
+    font-size: 4em;
+    margin: 5px;
+}
+
+.emoji {
+    opacity: 0;
+    margin-bottom: 0px;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.emoji.show {
+    opacity: 1;
+    justify-content: center; /* Center the container horizontally */
+}
+
+.submit-btn {
+    display: flex;
+    align-items: center; /* Ensures the button content is centered vertically */
+    justify-content: center; /* Ensures the button content is centered horizontally */
+    padding: 0; /* Removes any default padding */
+    background-color: transparent; /* Set background color to transparent */
+    border: none; /* Removes any default border */
+    outline: none; /* Remove default outline */
+    cursor: pointer; /* Adds a pointer cursor on hover */
+    height: 60px; /* Adjust to match the input field height */
+    width: 60px; /* Adjust as needed */
+    box-sizing: border-box; /* Ensures padding and border are included in width and height */
+}
+
+.submit-btn:hover {
+    background-color: transparent !important; /* Override default hover background color */
+    border-color: transparent !important; /* Override default hover border color */
+    filter: brightness(130%);
+}
+
+.submit-btn:focus, .quote-game-btn:focus, button:focus {
+    outline: none !important; /* Remove default focus outline */
+    box-shadow: none; /* Remove default box-shadow */
+}
+
+.congratulations {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #721de0;
+    border: 2px solid #5e0cc2;
+    padding: 20px 0;
+    z-index: 10;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    animation: slideUp 1s ease-out;
+}
+
+.congratulations:hover {
+    filter: brightness(110%);
+}
+
+.congratulations-content {
+    position: relative;
+    padding: 20px;
+}
+
+.congratulations-title {
+    font-size: 2.5em;
+    color: #ffba61;
+    margin-bottom: 10px;
+    animation: pop 1s ease-out;
+}
+
+.congratulations-message {
+    font-size: 1.5em;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.celebration-img {
+    width: 100px;
+    height: auto;
+    animation: bounce 2s infinite;
+}
+
+.confetti {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
+
+@keyframes pop {
+    0% { transform: scale(0); }
+    100% { transform: scale(1); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.confetti-piece {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #FFD700;
+    animation: fall 3s infinite;
+}
+
+@keyframes fall {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(100vh); }
+}
+
+.emoji.fade-in {
+    opacity: 0;
+    transition: opacity 0.5s ease; /* Define the transition */
+}
+
+.emoji.fade-in.show {
+    opacity: 1; /* Show the emoji with transition */
+}
+
+.placeholder-image.fade-out {
+    opacity: 1;
+    transition: opacity 0.5s ease; /* Define the transition */
+}
+
+.placeholder-image.fade-out.hide {
+    opacity: 0; /* Hide the placeholder image with transition */
+}
+
+#streamer-list-container {
+    position: relative;
+}
+
+#streamer-list {
+    display: none;
+    position: absolute;
+    background-color: #f0f0f0;
+    top: calc(100% + 2px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 2px);
+    max-height: 150px; /* Adjusted max-height */
+    max-width: 500px;
+    overflow-y: auto;
+    background-color: #333;
+    border: 1px solid #555;
+    border-top: none;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+@media (max-width: 768px) {
+    #streamer-list {
+        width: 100%;
+        max-height: 300px; /* Increase height if necessary */
+    }
+}
+
+.streamer-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.streamer-item:hover {
+    background-color: #9146ff; /* Purple background on hover */
+    color: #fff; /* White text color on hover */
+}
+
+#streamer-list div {
+    padding: 10px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    border-bottom: 1px solid #555;
+}
+
+#streamer-list div:last-child {
+    border-bottom: none;
+}
+
+#streamer-list div:hover {
+    background-color: #555;
+}
+
+.congratulations {
+
+.celebration-img {
+    width: 120px; /* Decrease width */
+    height: 120px; /* Decrease height */
+}}
+
+.streamer-image {
+    width: 50px; /* Adjust as needed */
+    height: 50px; /* Adjust as needed */
+}
+
+.streamer-image-small {
+    width: 30px; /* Adjust as needed */
+    height: 30px; /* Adjust as needed */
+    margin-right: 10px; /* Add some space between image and name */
+
+}
+
+.large-emoji {
+
+    font-size: 64px; /* Adjust the size as needed */
+}
+
+.large-emoji img {
+    width: 64px; /* Adjust the size as needed */
+    height: 64px; /* Adjust the size as needed */
+    margin-bottom: 13px;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+.correct-guess {
+    background-color: green;
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-10px);
+    }
+    20%, 40%, 60%, 80% {
+        transform: translateX(10px);
+    }
+}
+
+.guessed-streamer.shake {
+    animation: shake 0.8s ease-in-out;
+}
+
+@keyframes skok {
+    0%, 10%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-30px);
+    }
+    60% {
+        transform: translateY(-15px);
+    }
+}
+.guessed-streamer.skok {
+    animation: bounce 0.6s;
+}
+
+.attempt-count-container {
+    margin-top: 20px;
+    font-size: 1.5em; /* Adjust font size as needed */
+    font-family: Arial, sans-serif; /* Specify preferred font family */
+    color: white; /* Adjust text color */
+}
+
+.attempt-label {
+    font-weight: bold; /* Make the label "Number of tries:" bold */
+    color: black; /* Adjust color of the label */
+}
+
+.attempt-count {
+    font-weight: bold; /* Make the attempt count bold */
+    color: pink; /* Adjust color of the attempt count */
+}
+
+
+.guessed-streamer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+    justify-content: center; /* Add this line */
+}
+
+@media (max-width: 768px) {
+    .guessed-streamer-container {
+        max-width: 90%;
+    }
+}
+
+.guessed-streamer-item {
+    background-color: #f04f43;
+    width: 500px;
+    color: #fff;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .guessed-streamer-item {
+        max-width: 90%;
+    }
+}
+
+.guessed-streamer-image {
+    width: 50px;
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: 50%;
+}
+
+.guessed-streamer-name {
+font-size: 17px;
+    color: #fff;
+}
+
+/* Existing CSS for shake animation */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+    20%, 40%, 60%, 80% { transform: translateX(10px); }
+}
+
+.shake {
+    animation: shake 0.8s;
+}
+
+/* New CSS for the correct guess animation */
+@keyframes scaleAnimation {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.4);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes colorAnimation {
+    0%, 100% {
+        background-color: green;
+    }
+    50% {
+        background-color: green;
+    }
+}
+
+.correct-guess {
+    animation: scaleAnimation 1.1s linear forwards, colorAnimation 2s infinite linear;
+}
+
+.counter-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+    font-size: 20px;
+    font-family: Arial, sans-serif;
+    color: white;
+}
+
+.counter-container .counter-number {
+    color: pink; /* Initial color */
+    font-weight: bold;
+    transition: color 0.5s ease;
+    margin-left: 5px;
+    margin-right: 5px;/* Adjust the margin as needed */
+}
+
+footer {
+    text-align: center;
+    padding: 5px;
+    background-color: #333;
+    color: white;
+    font-size: 17px;
+}
+
+footer p {
+    font-size: 1.2em;
+    margin: -3px 0;
+}
+
+footer a {
+    color: #1DA1F2; /* Twitter color */
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+footer a.github {
+    color: #4078c0; /* GitHub color */
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+.countdown-container {
+    color: white;
+    text-align: center;
+    margin-top: 18px;
+    font-size: 22px;
+}
+
+#countdown {
+    font-size: 22px;
+    font-weight: bold;
+     color: pink;
+}
+
+/* Additional styles for the play again button */
+.quote-game-btn {
+    background-color: transparent !important; /* Override default hover background color */
+    border-color: transparent !important; /* Override default hover border color */
+    border: none; /* Removes any default border */
+    outline: none; /* Remove default outline */
+    z-index: 1000; /* Ensure the button is above other elements */
+    position: relative; /* Ensures the z-index takes effect */
+    animation: zoomButton 0.6s infinite alternate; /* Animation for continuous zooming */
+    box-sizing: border-box; /* Ensures padding and border are included in width and height */
+    align-items: center; /* Ensures the button content is centered vertically */
+    justify-content: center; /* Ensures the button content is centered horizontally */
+    padding: 0; /* Removes any default padding */
+    height: 50px; /* Decrease height */
+    width: 50px; /* Decrease width */
+}
+
+@keyframes zoomButton {
+    0% {
+        transform: scale(1); /* Original size */
+    }
+    100% {
+        transform: scale(1.2); /* Zoomed out size */
+    }
+}
+
+.btn-info[disabled] {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.quote-game-btn:hover {
+    background-color: transparent !important; /* Override default hover background color */
+    border-color: transparent !important; /* Override default hover border color */
+    filter: brightness(125%);
+    animation-play-state: paused; /* Pause the animation on hover */
+}
+
+.quote-game-btn:focus {
+    outline: none !important; /* Remove default focus outline */
+}
+
+.button-img {
+    width: 280px; /* Decrease width */
+    height: 70px; /* Decrease height */
+}
+
+.button-text {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 16px; /* Adjust as needed */
+    white-space: nowrap; /* Prevent text from wrapping */
+    left: 55%; /* Center horizontally */
+    transform: translateX(-45%); /* Center horizontally */
+}
+
+.sub-text {
+    font-size: 12px; /* Smaller font size for the subtext */
+    color: #ccc; /* Lighter color for the subtext */
+    margin-top: -5px; /* Small margin to separate from the main text */
+}
+
+.button-content {
+    position: relative;
+    display: flex;
+    justify-content: center; /* Center contents horizontally */
+    align-items: center; /* Center contents vertically */
+    height: 70px; /* Decrease height */
+}
+
+.stats-button {
+    width: 250px;
+    height: 250px;
+    cursor: pointer;
+    display: block;
+    margin-right: 50px;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: inline-block;
+
+}
+
+.stats-button img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover; /* Ensures the image scales properly without distortion */
+    cursor: pointer;
+    display: block;
+}
+
+.stats-button a {
+    display: inline-block;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    border: 2px dotted white;
+}
+
+@media (max-width: 768px) {
+    .stats-button {
+        width: 50px; /* Adjust this size as needed */
+        height: 50px; /* Adjust this size as needed */
+        margin-top: 110px;
+        margin-right: 35px;
+    }
+
+    .stats-button img {
+        width: 50px;
+        height: 50px;
+        margin-right: 35px;
+    }
+    .stats-button a {
+        width: 50px;
+        height: 50px;
+        margin-right: 35px;
+    }
+}

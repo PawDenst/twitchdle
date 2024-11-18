@@ -7,20 +7,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Twitchdle</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../static/styles_emotes.css">
-    <link rel="icon" href="../static/favicon.ico" type="image/x-icon">
-    <link rel="icon" type="image/png" sizes="32x32" href="../static/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../static/favicon-16x16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="../static/apple-touch-icon.png">
+    <link rel="stylesheet" href="../static/css/styles_emotes.css">
+    <link rel="icon" href="../static/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="32x32" href="../static/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../static/images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../static/images/apple-touch-icon.png">
     <link rel="manifest" href="../static/site.webmanifest">
 </head>
 <body onload="displayGuessedStreamers()">
     <!-- Existing HTML code -->
     <div class="logo">
         <a href="/">
-            <img src="static/logo.png" alt="Twitchdle">
+            <img src="static/images/logo.png" alt="Twitchdle">
         </a>
     </div>
+
+    <div class="stats-button" style="position: fixed; top: 20px; right: 20px; display: inline-block;">
+    <a href="/user_statistics" style="display: inline-block; background-color: rgba(0, 0, 0, 0.7); border-radius: 5px; padding: 10px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); border: 2px dotted white;">
+        <img src="static/images/staty.png" alt="Check Stats" style="cursor: pointer; display: block;">
+    </a>
+</div>
 
     <div class="background-container">
 
@@ -41,7 +47,7 @@
             </div>
             <a href="/quote" class="btn btn-info quote-game-btn" id="quoteButton">
                 <div class="button-content">
-                    <img src="static/cytat.png" alt="Button Image" class="button-img">
+                    <img src="static/images/cytat.png" alt="Button Image" class="button-img">
                     <span class="button-text">
                         Cytat
                         <span class="sub-text">Odgadnij streamera po cytacie</span>
@@ -56,12 +62,12 @@
         <div id="emojis"></div>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-        <script src="../static/script_emotes.js"></script>
+        <script src="../static/js/script_emotes.js"></script>
 
         <div class="input-container">
             <input type="text" id="guessInput" placeholder="Wpisz nick streamera">
             <button id="guessButton" class="btn submit-btn" type="button" onclick="checkGuess()">
-                <img src="static/right-circular-64.png" class="submit-img" alt="Sprawdź">
+                <img src="static/images/right-circular-64.png" class="submit-img" alt="Sprawdź">
             </button>
         </div>
         <div id="streamer-list-container">
@@ -74,7 +80,7 @@
 
     <footer>
         <p>Stworzył pawelqq1</p>
-        <a href="https://tipo.live/p/twitchdle" target="_blank"><img src="static/dotacja.png" style="width: 5%; height: 5%" alt="Wesprzyj mnie"></a>
+        <a href="https://tipo.live/p/twitchdle" target="_blank"><img src="static/images/dotacja.png" style="width: 5%; height: 5%" alt="Wesprzyj mnie"></a>
         <p>
             <a href="https://twitter.com/pawelqq1" target="_blank">Twitter</a>
         </p>

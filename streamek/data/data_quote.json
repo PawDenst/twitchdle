@@ -17,7 +17,7 @@
     },
     {
         "streamer": "meduska",
-        "image_url": "https://static-cdn.jtvnw.net/jtv_user_pictures/eb3db010-50f2-40a5-90c3-c52731a341ec-profile_image-150x150.png?imenable=1&impolicy=user-profile-picture&imwidth=100"
+        "image_url": "https://static-cdn.jtvnw.net/jtv_user_pictures/3fbc245b-8b63-4132-9b8a-2730156ded60-profile_image-150x150.png?imenable=1&impolicy=user-profile-picture&imwidth=100"
     },
     {
         "streamer": "IzakOOO",
@@ -201,7 +201,7 @@
     },
     {
         "streamer": "Mamm0n",
-        "image_url": "https://static-cdn.jtvnw.net/jtv_user_pictures/3afb39c8-302a-4e1d-a39d-e26eeedac92c-profile_image-150x150.png?imenable=1&impolicy=user-profile-picture&imwidth=100"
+        "image_url": "https://static-cdn.jtvnw.net/jtv_user_pictures/8daf9f1e-acb5-4d6a-a4dd-702cab00a708-profile_image-150x150.png?imenable=1&impolicy=user-profile-picture&imwidth=100"
     },
     {
         "streamer": "Testree",
@@ -266,5 +266,29 @@
     {
         "streamer": "DisStream",
         "image_url": "https://static-cdn.jtvnw.net/jtv_user_pictures/disstream-profile_image-49cb71b9ba541dcf-70x70.png"
+    },
+    {
+        "streamer": "sawardega",
+        "image_url": "https://static-cdn.jtvnw.net/jtv_user_pictures/sawardega-profile_image-ffbd1fec2824c7df-150x150.jpeg?imenable=1&impolicy=user-profile-picture&imwidth=100"
+    },
+    {
+        "streamer": "szymoool",
+        "image_url": "https://static-cdn.jtvnw.net/jtv_user_pictures/9facc2f0-bb80-465f-a8d0-54e5f40ca75e-profile_image-150x150.png?imenable=1&impolicy=user-profile-picture&imwidth=100"
+    },
+    {
+        "streamer": "pajalockk",
+        "image_url": "https://static-cdn.jtvnw.net/jtv_user_pictures/931b9fe9-0832-42d7-85a1-faff4d55c433-profile_image-150x150.png?imenable=1&impolicy=user-profile-picture&imwidth=100"
+    },
+    {
+        "streamer": "xToM223",
+        "image_url": "https://static-cdn.jtvnw.net/jtv_user_pictures/3e654955-277e-4431-a530-847d8c7654ea-profile_image-150x150.png?imenable=1&impolicy=user-profile-picture&imwidth=100"
+    },
+    {
+        "streamer": "inet_saju",
+        "image_url": "https://static-cdn.jtvnw.net/jtv_user_pictures/0477eda1-3ced-4401-a8d0-141b9c5ab618-profile_image-150x150.png?imenable=1&impolicy=user-profile-picture&imwidth=100"
+    },
+    {
+        "streamer": "Diables",
+        "image_url": "https://static-cdn.jtvnw.net/jtv_user_pictures/21225f7a-c222-4fd9-8c46-1d252955e0e7-profile_image-150x150.png?imenable=1&impolicy=user-profile-picture&imwidth=100"
     }
 ]

@@ -15,7 +15,8 @@ from policy import policy_app
 from categories import categories_app, initialize_streamer
 from quote import quote_app, reset_correct_guesses_count, initialize_quote
 from avatar import avatar_app, avatar_reset_correct_guesses_count, initialize_avatar
-from stats import get_user_id, load_user_stats, update_user_stats, init_game_stats
+from stream_stats import stream_stats_app, stats_reset_correct_guesses_count, initialize_stream_stats
+from stats import get_user_id, load_user_stats, update_user_stats, init_game_stats, calculate_global_average_attempts
 
 
 def generate_seed():
@@ -33,6 +34,9 @@ def generate_seed_quote():
 def generate_seed_avatar():
     return (uuid.uuid4().int & (1 << 30) - 10) ^ 0x123456
 
+def generate_seed_stats():
+    return (uuid.uuid4().int & (1 << 30) - 10) ^ 0xA123CD
+
 
 app = Flask(__name__)
 app.config['TEMPLATES_AUTO_RELOAD'] = True
@@ -43,6 +47,7 @@ app.config['seed'] = generate_seed()
 app.config['seed_categories'] = generate_seed_categories()
 app.config['seed_quote'] = generate_seed_quote()
 app.config['seed_avatar'] = generate_seed_avatar()
+app.config['seed_stats'] = generate_seed_stats()
 
 app.register_blueprint(main_app)
 app.register_blueprint(emotes_app)
@@ -51,6 +56,7 @@ app.register_blueprint(categories_app)
 app.register_blueprint(quote_app)
 app.register_blueprint(policy_app)
 app.register_blueprint(avatar_app)
+app.register_blueprint(stream_stats_app)
 
 # Global dictionary to simulate session data
 session_data = {}
@@ -254,6 +260,29 @@ def avatar_scheduled_start_job():
         initialize_avatar()
 
 
+@scheduler.task('cron', id='clear_stream_stats_session', hour='00', minute='00', second='00')
+def stream_stats_scheduled_start_job():
+    with app.app_context():
+        current_app.logger.info('Clearing session data for all users')
+        for session_id, user_session in session_data.items():
+            if 'available_streamers_stats' in user_session:
+                user_session.pop('available_streamers_stats', None)
+            if 'guessed_stats' in user_session:
+                user_session.pop('guessed_stats', None)
+            if 'stats_result' in user_session:
+                user_session.pop('stats_result', None)
+            if 'stats_guesses_counter' in user_session:
+                user_session.pop('stats_guesses_counter', None)
+            if 'stats_correct_guess_count' in user_session:
+                user_session.pop('stats_correct_guess_count', None)
+            if 'wrong_guesses' in user_session:
+                user_session.pop('wrong_guesses', 0)
+        stats_reset_correct_guesses_count()
+        new_seed_stats = generate_seed_stats()
+        current_app.config['seed_stats'] = new_seed_stats
+        current_app.logger.info(f'Setting new seed: {new_seed_stats}')
+        initialize_stream_stats()
+
 @app.route('/user_statistics')
 def user_statistics():
     try:
@@ -265,18 +294,45 @@ def user_statistics():
             "categories": init_game_stats(),
             "quotes": init_game_stats(),
             "avatars": init_game_stats(),
-            "emotes": init_game_stats()
+            "emotes": init_game_stats(),
+            "stats": init_game_stats(),
         })
+
+        # Calculate user's and global average attempts for all game types
+        user_avg_attempts = {
+            'categories': user_data['categories']['average_attempt_count'],
+            'quotes': user_data['quotes']['average_attempt_count'],
+            'avatars': user_data['avatars']['average_attempt_count'],
+            'emotes': user_data['emotes']['average_attempt_count'],
+            'stats': user_data['stats']['average_attempt_count']
+        }
+
+        global_avg_attempts = {
+            'categories': calculate_global_average_attempts('categories'),
+            'quotes': calculate_global_average_attempts('quotes'),
+            'avatars': calculate_global_average_attempts('avatars'),
+            'emotes': calculate_global_average_attempts('emotes'),
+            'stats': calculate_global_average_attempts('stats')
+        }
+
     except Exception as e:
         print(f"Error loading user statistics: {e}")
+        # If an error occurs, initialize with default values
         user_data = {
             "categories": init_game_stats(),
             "quotes": init_game_stats(),
             "avatars": init_game_stats(),
             "emotes": init_game_stats()
         }
+        user_avg_attempts = {game_type: 0 for game_type in ['categories', 'quotes', 'avatars', 'emotes', 'stats']}
+        global_avg_attempts = {game_type: 0 for game_type in ['categories', 'quotes', 'avatars', 'emotes', 'stats']}
 
-    return render_template('user_statistics.html', user_data=user_data)
+    # Pass both user_data and comparison data (user and global averages) to the template
+    return render_template('user_statistics.html',
+                           user_data=user_data,
+                           user_avg_attempts=user_avg_attempts,
+                           global_avg_attempts=global_avg_attempts)
+
 
 
 @app.route('/update_user_stats', methods=['POST'])
@@ -288,14 +344,19 @@ def update_user_stats_route():
         first_try = data.get('first_try')
         game_type = 'emotes'  # Hardcoded for this context
 
-        # Call the update_user_stats function
-        update_user_stats(attempts, won, first_try, game_type)
+        # Call the update_user_stats function and get comparison data
+        user_avg_attempts, global_avg_attempts = update_user_stats(attempts, won, first_try, game_type)
     except Exception as e:
         print(f"Error updating user statistics: {e}")
         # Return a failure response if there's an issue
         return jsonify({'status': 'failure', 'error': str(e)}), 500
 
-    return jsonify({'status': 'success'})
+    # Return the updated statistics with user and global average attempt counts
+    return jsonify({
+        'status': 'success',
+        'user_avg_attempts': user_avg_attempts,
+        'global_avg_attempts': global_avg_attempts
+    })
 
 
 if __name__ == "__main__":

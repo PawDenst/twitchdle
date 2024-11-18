@@ -179,7 +179,7 @@ def avatar():
                         if guess == current_streamer:
                             user_session['avatar_result'] = 'correct'
                             animation_class = 'correct-guess skok'
-                            user_session['correct_guess_count'] = avatar_update_correct_guesses_count()
+                            user_session['avatar_correct_guess_count'] = avatar_update_correct_guesses_count()
                             won = True
                             first_try = user_session['avatar_guesses_counter'] == 1
                             try:
