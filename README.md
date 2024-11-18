@@ -22,7 +22,8 @@ Logika gry została napisana w Pythonie oraz JavaScripcie.
 :----------------------------------------------:|:------------------------------------------------:
 ![KLasyczny](https://github.com/user-attachments/assets/98130580-28f8-402a-be6e-a9368f2dd3d3) | ![Emotki](https://github.com/user-attachments/assets/d184017f-6af6-44b0-ab0f-df270b25db7b)
 ![Cytat](https://github.com/user-attachments/assets/caaaff17-9459-4254-9219-cbcf89214144) | ![Avatar](https://github.com/user-attachments/assets/2dd7e552-aea8-4578-a600-d1799d91357a)
-![Topowe Emotki](https://github.com/user-attachments/assets/01d84630-679c-4ef4-b36b-22ddcff9a02c) 
+&nbsp;                                         | ![Topowe Emotki](https://github.com/user-attachments/assets/01d84630-679c-4ef4-b36b-22ddcff9a02c)
+
 
 
 
