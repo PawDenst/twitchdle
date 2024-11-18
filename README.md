@@ -1,5 +1,4 @@
-<br>
-# twitchdle 
+
 <p align="center">
   <img src="/streamek/static/images/logo.png" width="240"/>
 </p>
