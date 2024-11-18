@@ -17,7 +17,7 @@ Jest pięć trybów gry:
 
 ## Krótki opis
  - **Serwer** - Projekt działa na serwerze NGINX, który pełni rolę serwera HTTP i proxy reversowego. NGINX jest skonfigurowany do obsługi ruchu do aplikacji, optymalizując wydajność oraz zarządzanie ruchem.
- - **Języki programowania** - Logika gry została napisana w Pythonie oraz JavaScripcie. Kod źródłowy w języku python znajduje się w folderze games, a JavaSCript w static/js
+ - **Języki programowania** - Logika gry została napisana w Pythonie oraz JavaScripcie. Kod źródłowy w języku Python znajduje się w folderze games, a JavaScript w static/js
  - **Wizualia** - Wygląd strony dostosowano przy użyciu HTML oraz CSS znajdujących się kolejno w folderach templates oaz static/css
 
 ## Zrzuty ekranu
