@@ -4,7 +4,7 @@
 </p>
 
 
-Twitchdle jest aplikacją do codziennego zgadywania streamerów z platformy Twitch.tv.
+[Twitchdle](https://www.twitchdle.com) jest aplikacją do codziennego zgadywania streamerów z platformy Twitch.tv.
 
 ## Tryby Gry
 
