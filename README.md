@@ -14,9 +14,9 @@ Logika gry została napisana w pythonie oraz JavaScripcie.
 
 ![image](https://github.com/user-attachments/assets/98130580-28f8-402a-be6e-a9368f2dd3d3)
 
-![image](https://github.com/user-attachments/assets/fd8c4d62-ddb0-4f76-8449-c82c6e4688aa)
+![image](https://github.com/user-attachments/assets/d184017f-6af6-44b0-ab0f-df270b25db7b)
 
-![image](https://github.com/user-attachments/assets/f9ebed0c-7f01-4926-84fa-00a3b61e17d5)
+![image](https://github.com/user-attachments/assets/caaaff17-9459-4254-9219-cbcf89214144)
 
 ![image](https://github.com/user-attachments/assets/2dd7e552-aea8-4578-a600-d1799d91357a)
 
