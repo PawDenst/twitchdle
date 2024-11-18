@@ -15,6 +15,10 @@ Jest pięć trybów gry:
 - **Avatar** - odgadnij streamera na podstawie jego avatara 
 - **Topowe Emotki** - odgadnij streamera na podstawie najczęściej używanych emotek i komend na jego czacie
 
+## Krótki opis
+**Serwer**
+Projekt działa na serwerze NGINX, który pełni rolę serwera HTTP i proxy reversowego. NGINX jest skonfigurowany do obsługi ruchu do aplikacji, optymalizując wydajność oraz zarządzanie ruchem.
+**Języki programowania**
 Logika gry została napisana w Pythonie oraz JavaScripcie.
 
 ## Zrzuty ekranu
