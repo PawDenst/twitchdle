@@ -17,6 +17,12 @@ Logika gry została napisana w Pythonie oraz JavaScripcie.
 
 # # Zrzuty ekranu
 
+## Screenshots
+|                   Mainscreen                  |                    Champion mode                |
+:----------------------------------------------:|:------------------------------------------------:
+![Main Image](https://github.com/user-attachments/assets/98130580-28f8-402a-be6e-a9368f2dd3d3) | ![Champion Mode Image]([https://github.com/user-attachments/assets/98130580-28f8-402a-be6e-a9368f2dd3d3](https://github.com/user-attachments/assets/98130580-28f8-402a-be6e-a9368f2dd3d3))
+
+
 ![image](https://github.com/user-attachments/assets/98130580-28f8-402a-be6e-a9368f2dd3d3)
 
 ![image](https://github.com/user-attachments/assets/d184017f-6af6-44b0-ab0f-df270b25db7b)
