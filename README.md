@@ -1,6 +1,6 @@
 # twitchdle 
 <p align="center">
-  <img src=" ![logo](https://github.com/user-attachments/assets/1ee6cc8b-bb6e-4af9-9518-22555082a28d)"/>
+  <img src="/streamek/static/images/logo.png" width="240"/>
 </p>
 
 
