@@ -1,6 +1,6 @@
 # twitchdle 
 <p align="center">
-  <img ![logo](https://github.com/user-attachments/assets/1ee6cc8b-bb6e-4af9-9518-22555082a28d)
+  ![logo](https://github.com/user-attachments/assets/1ee6cc8b-bb6e-4af9-9518-22555082a28d)
 </p>
 
 
